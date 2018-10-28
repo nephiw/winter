@@ -1,21 +1,42 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="hero">
+  <div class="image-wrapper">
+    <img class="float right clear" src="/assets/images/ornaments.svg">
+  </div>
+  <div class="text-wrapper">
+    <div class="light-red">Saturday December 16, 2017</div>
+    <div class="light-red">5:00pm - 8:00pm</div>
+    <div class="dark-green">at the Belle Creek Family Center</div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<h1 class="cursive title">
+  <span class="light-red">Community</span><br>
+  <span class="dark-green">Ugly Christmas Sweater</span><br>
+  <span class="light-red">Party</span>
+</h1>
+<div class="event-wrapper float right">
+  <div class="event-summary">
+      <div class="gold cursive">Fun for Everyone</div>
+      <div class="dark-green">• Raffle &amp; Prizes •</div>
+      <div class="light-red">• Horse Drawn Carriage Rides •</div>
+      <div class="dark-green">• Cookie Decorating •</div>
+      <div class="light-red">• Wish Lists for Santa •</div>
+      <div class="dark-green">• Photo Booth •</div>
+      <div class="light-red">• Ugly Sweater Contest •</div>
+      <div class="dark-green">• Music &amp; Dancing •</div>
+      <div class="light-red">• Roasting Marshmallows •</div>
+      <div class="dark-green">• Hot Chocolate •</div>
+      <div class="light-red">• Visit with Santa •</div>
+      <div class="dark-red">5:00pm - 7:00pm</div>
+  </div>
+  <div class="event-details">
+    <p class="light-green">Food will be served potluck style with the YMCA providing flatware and Natasha Fry of Golden West Realty will be providing alcohol.<br>
+    <a class="dark-green" target="signup" href="http://www.signupgenius.com/go/60b0c4dafa62ca7fc1-belle1">
+      Please RSVP for food sign-ups.</a>
+    </p>
+    <p class="gold">We’ll also be collecting toys for donation throughout the month of Decemeber.</p>
+  </div>
+</div>
+<div class="float left tree">
+  <img src="/assets/images/tree.svg" alt="">
+</div>
 <router-outlet></router-outlet>

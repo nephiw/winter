@@ -1,1 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'LibelSuit';
+  src: url('/assets/fonts/libel-suit.woff2') format('woff2'),
+  url('/assets/fonts/libel-suit.woff') format('woff'),
+  url('/assets/fonts/libel-suit.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Journey';
+  src: url('/assets/fonts/journey-to-thailand.woff2') format('woff2'),
+  url('/assets/fonts/journey-to-thailand.woff') format('woff'),
+  url('/assets/fonts/journey-to-thailand.ttf') format('truetype');
+}
+
+body {
+  font-size: 18px;
+  font-size: 2.5vw;
+  margin: 0;
+  color: #698037;
+  padding: 0 30px 30px 30px;
+  font-family: "LibelSuit", Arial, Helvetica, sans-serif;
+  background-color: #E9D8AD;
+  background-image: url('/assets/images/snowflakes.svg');
+  background-position: 100%;
+}
+
+.dark-red { color: #AC161B }
+.light-red { color:#DA2128; }
+.dark-green { color:#698037; }
+.light-green { color:#8DC63F; }
+.gold { color: #DA9E31; }
+
+.cursive {
+  font-family: "Journey", Arial, Helvetica, sans-serif;
+}
+
+.hero {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.hero img {
+  width: 65%;
+}
+
+.hero .text-wrapper {
+  margin-top: 30px;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+h1.title {
+  text-align: center;
+  font-size: 3.3em;
+  line-height: 1.5em;
+}
+
+.event-wrapper {
+  max-width: 52%;
+}
+
+.event-summary {
+  font-size: 1.8em;
+  padding: 15px;
+  text-align: center; 
+}
+
+.event-details {
+  font-size: 1.6em;
+  padding: 15px;
+  text-align: center;
+}
+
+.tree {
+  width: 48%;
+}
+
+.tree img {
+  width: 100%;  
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 26px;
+  }
+}
+
+.float {
+  overflow: hidden;
+}
+
+.float.clear {
+  clear: both;
+}
+
+.float.left {
+  float: left;
+}
+
+.float.right {
+  float: right;
+}
