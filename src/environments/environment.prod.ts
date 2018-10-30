@@ -1,3 +1,5 @@
+import * as uservars from '../../uservars.json';
 export const environment = {
-  production: true
+  production: true,
+  firebase: uservars
 };
