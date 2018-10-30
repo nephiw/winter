@@ -1,0 +1,53 @@
+:host {
+  .cursive {
+    font-family: "Journey", Arial, Helvetica, sans-serif;
+  }
+
+  .dark-red { color: #AC161B }
+  .light-red { color:#DA2128; }
+  .dark-green { color:#698037; }
+  .light-green { color:#8DC63F; }
+  .gold { color: #DA9E31; }
+
+
+  h1.title {
+    text-align: center;
+    font-size: 3.3em;
+    line-height: 1.5em;
+  }
+
+  .event-wrapper {
+    max-width: 52%;
+  }
+
+  .event-summary {
+    font-size: 1.8em;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .event-details {
+    font-size: 1.6em;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .tree {
+    width: 48%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .tree {
+      width: 0;
+      display: none;
+    }
+
+    .event-wrapper {
+      max-width: 100%;
+    }
+  }
+}
