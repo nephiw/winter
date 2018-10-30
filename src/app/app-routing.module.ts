@@ -3,7 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent }
+  { path: '', component: HomePageComponent },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
+  { path: 'house', loadChildren: './house/house.module#HouseModule' },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
