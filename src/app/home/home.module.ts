@@ -9,6 +9,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     CommonModule,
     RouterModule
   ],
-  declarations: [HomePageComponent]
+  declarations: [
+    HomePageComponent
+  ]
 })
 export class HomeModule { }

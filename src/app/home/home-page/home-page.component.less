@@ -1,16 +1,27 @@
 :host {
   display: block;
 
-  .cursive {
-    font-family: "Journey", Arial, Helvetica, sans-serif;
-  }
-
   .dark-red { color: #AC161B }
   .light-red { color:#DA2128; }
   .dark-green { color:#698037; }
   .light-green { color:#8DC63F; }
   .gold { color: #DA9E31; }
 
+  a {
+    &:hover {
+      opacity: 0.85;
+    }
+    &:visited, &:active, &:focus {
+      color: inherit;
+    }
+
+    color: inherit;
+  }
+
+  .signups {
+    text-align: center;
+    margin: 30px;
+  }
 
   h1.title {
     text-align: center;

@@ -1,0 +1,44 @@
+<p>
+  Sign up here to join the Belle Creek holiday decoration contest and compete with your neighbors for who has the best
+  decorated house in the community. Sign up before the December 9th deadline and we will provide you with a sign telling
+  your neighbors that you are participating. They can then vote for the best decorations between December 9th and 
+  December 15th.
+</p>
+<form [formGroup]="houseForm" (ngOnSubmit)="submitSignupForm()">
+  <div class="input-item group">
+    <input required type="text" formControlName="firstName" />
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label id="first-name">First Name</label>
+  </div>
+
+  <div class="input-item group">
+    <input required type="text" formControlName="lastName" />
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label id="last-name">Last Name</label>
+  </div>
+
+  <div class="input-item group">
+    <input required type="text" formControlName="houseAddress" />
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label id="street-address">Street Address</label>
+  </div>
+
+  <div class="input-item group">
+    <input required type="email" formControlName="emailAddress" />
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label id="email-address">Email Address</label>
+  </div>
+
+  <div>
+    <button class="btn btn-submit"
+            [disabled]="houseForm.invalid || houseForm.pristine"
+            (click)="submitSignupForm()"
+            type="button">
+      Sign Up
+    </button>
+  </div>
+</form>
