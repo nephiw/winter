@@ -1,0 +1,28 @@
+<form [formGroup]="authenticationForm" (ngOnSubmit)="login()">
+  <div class="input-item group">
+    <input required="required" type="email" formControlName="email" />
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label id="first-name">Email</label>
+  </div>
+
+  <div class="input-item group">
+    <input required="required" type="password" formControlName="password" />
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label id="last-name">Password</label>
+  </div>
+  <div class="button-row">
+    <button class="btn btn-submit"
+            [disabled]="authenticationForm.invalid || authenticationForm.pristine"
+            (click)="login()"
+            type="button">
+      Login
+    </button>
+    <button class="btn btn-submit"
+            (click)="logout()"
+            type="button">
+      Logout
+    </button>
+  </div>
+</form>

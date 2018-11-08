@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { StorageServiceModule } from 'ngx-webstorage-service';
@@ -24,6 +25,7 @@ const { firebase } = environment;
     ReactiveFormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebase),
+    AngularFireAuthModule,
     HomeModule,
     StorageServiceModule,
     ToastrModule.forRoot({

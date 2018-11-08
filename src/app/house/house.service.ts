@@ -58,7 +58,7 @@ export class HouseService {
   }
 
   // const contactKey = this.contactService.generateKey(data);
-  // const house = { contactKey, streetAddress: data.streetAddress };
+  // const house = { contactKey, houseAddress: data.houseAddress };
 
   // await this.contactService.createNewContact(data);
 
