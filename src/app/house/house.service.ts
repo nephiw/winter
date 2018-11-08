@@ -16,15 +16,21 @@ export class HouseService {
     @Inject(LOCAL_STORAGE) private storage: StorageService,
   ) { }
 
-  // TODO - when a house is created, build a contact AND a house. The contact will have
-  // contact information including the street address while the house will have decoration
-  // information houseAddress, createdAt, contactKey, and imagePaths
   public createHouse(house: Contact): Observable<string> {
-    house.createdAt = new Date();
-    const houseRef = this.db.collection('contacts').add(house);
-    return from(houseRef).pipe(map((documentRef) => {
+    return from(this.saveContact(house)).pipe(map((documentRef) => {
       return documentRef.id;
     }));
+  }
+
+  private async saveContact(contact: Contact): Promise<any> {
+    const createdAt = new Date();
+    contact.createdAt = createdAt;
+    const houseAddress = contact.houseAddress;
+    const houseRef = await this.db.collection('contacts').add(contact);
+
+    const entry = { contactKey: houseRef.id, createdAt, houseAddress, number: -1, imagePaths: [] };
+
+    return this.db.collection('entries').add(entry);
   }
 
   public getHouses(): Observable<HouseEntry[]> {

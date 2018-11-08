@@ -4,10 +4,10 @@
   <span class="light-red">Party</span>
 </h1> 
 <div class="signups">
-  <div class="clickable dark-green">
+  <div class="clickable dark-green" *ngIf="acceptingHouses">
     <a routerLink="/house/form">Sign Up to participate in the house decoration competition!</a>
   </div>
-  <div class="clickable dark-green">
+  <div class="clickable dark-green" *ngIf="acceptingVotes">
     <a routerLink="/house/vote">Vote for the best decorated house!</a>
   </div>
 </div>
@@ -34,4 +34,4 @@
   <img src="/assets/images/tree.svg" alt="">
 </div>
 <div class="clearfix"></div>
-<a class="gold admin-link" [routerLink]="['/admin']">admin</a>
+<!-- <a class="gold admin-link" [routerLink]="['/admin']">admin</a> -->
