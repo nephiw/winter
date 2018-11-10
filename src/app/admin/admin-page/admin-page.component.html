@@ -1,7 +1,7 @@
 <a [routerLink]="['']">Home</a>
-<a class="logout float right" (click)="logout()">Logout</a>
-<h1>Spooky Admin</h1>
-<a [routerLink]="['contacts']" routerLinkActive="active" class="sub-nav">See All Contacts</a>
-<a [routerLink]="['password']" routerLinkActive="active" class="sub-nav">Change Password</a>
-<!-- <a [routerLink]="['results']" routerLinkActive="active" class="sub-nav">Voting Results</a> -->
+<h1 class="cursive">User Admin</h1>
+<div class="admin-nav">
+  <a [routerLink]="['contacts']" routerLinkActive="active" class="sub-nav">All Contacts</a>
+  <a [routerLink]="['password']" routerLinkActive="active" class="sub-nav">Change Password</a>
+</div>
 <router-outlet></router-outlet>

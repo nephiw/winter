@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(
     private service: AngularFireAuth,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
   public login(credentials: { email: string, password: string }) {
     const { email, password } = credentials;
@@ -25,10 +24,8 @@ export class AuthService {
     } catch (_error) { }
   }
 
-  public isLoggedIn(): Observable<boolean> {
-    return this.service.user.pipe(map((user) => {
-      return user !== null;
-    }));
+  public isLoggedIn(): boolean {
+    return !!this.service.auth.currentUser;
   }
 
   // Instead of loging out and back in before changing the password, which is required

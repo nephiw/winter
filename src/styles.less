@@ -73,7 +73,6 @@ body {
   display: table;
 }
 
-/* ++++++++++++++++++++++++++++ FORMS ++++++++++++++++++++++++ */
 @bg-color: #AC161B;
 @hl-color: #698037;
 @error-color: #FF0000;
@@ -81,6 +80,24 @@ body {
 @trans-time: 300ms;
 @width: 360px;
 
+a {
+  color: @bg-color;
+
+  &:hover {
+    color: lighten(@bg-color, 10%);
+  }
+}
+
+a.active {
+  color: darken(@bg-color, 20%);
+  cursor: default;
+
+  &:hover {
+    color: darken(@bg-color, 20%);
+  }
+}
+
+/* ++++++++++++++++++++++++++++ FORMS ++++++++++++++++++++++++ */
 *,
 :before,
 :after {

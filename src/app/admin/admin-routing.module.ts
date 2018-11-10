@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { LoginComponent, PasswordChangeComponent, ContactsComponent } from './admin-page';
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login' },
+  { path: '', redirectTo: 'contacts', pathMatch: 'full' },
   { path: '', component: AdminPageComponent, children: [
     { path: 'login',    component: LoginComponent },
-    { path: 'password', component: PasswordChangeComponent },
-    { path: 'contacts', component: ContactsComponent }
+    { path: 'password', canActivate: [AuthGuard], component: PasswordChangeComponent },
+    { path: 'contacts', canActivate: [AuthGuard], component: ContactsComponent }
   ]}
 ];
 

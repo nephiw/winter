@@ -7,7 +7,6 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class ContactsTableComponent implements OnChanges {
   @Input() public contacts: any[];
-  public filteredContacts: any[];
   public totalHouses = 0;
 
   public showHouses = true;
@@ -21,14 +20,6 @@ export class ContactsTableComponent implements OnChanges {
       } else {
         this.totalHouses = 0;
       }
-      this.updateFilters();
     }
-  }
-
-  public updateFilters(): void {
-    this.filteredContacts = this.contacts.filter((contact) => {
-      const hasHouses = this.showHouses && !!contact.houseAddress;
-      return hasHouses;
-    });
   }
 }

@@ -28,7 +28,7 @@ export class PasswordChangeComponent implements OnInit {
     const { oldPassword, newPassword1 } = this.changeForm.value;
 
     this.auth.changePassword(oldPassword, newPassword1).then(() => {
-      return this.router.navigate(['admin']);
+      return this.router.navigate(['admin', 'contacts']);
     });
   }
 }

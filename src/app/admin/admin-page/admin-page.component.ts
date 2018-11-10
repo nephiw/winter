@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'admin/auth.service';
 
@@ -7,15 +7,12 @@ import { AuthService } from 'admin/auth.service';
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.less']
 })
-export class AdminPageComponent {
+export class AdminPageComponent implements OnInit {
+
   constructor(
     private auth: AuthService,
     private router: Router
   ) { }
 
-  public logout(): void {
-    this.auth.logout();
-    this.router.navigate(['/']);
-  }
-
+  public ngOnInit(): void {}
 }

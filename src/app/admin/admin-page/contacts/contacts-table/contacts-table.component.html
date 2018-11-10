@@ -1,28 +1,18 @@
 <div class="contacts">
   <div class="summary">
-    <div class="trunk-totals">There are currently {{ totalTrunks }} decorated trunks signed up.</div>
     <div class="house-totals">There are currently {{ totalHouses }} decorated houses signed up.</div>
-  </div>
-
-  <div class="filter group">
-    <label><input type="checkbox"
-                  name="houses"
-                  [(ngModel)]="showHouses"
-                  (change)="updateFilters()">Houses</label>
   </div>
 
   <table>
     <thead>
       <th>Name</th>
       <th>Email</th>
-      <th>Trunks</th>
       <th>Address</th>
     </thead>
     <tbody>
-      <tr *ngFor="let contact of filteredContacts; let idx = index;" class="contact-card">
+      <tr *ngFor="let contact of contacts; let idx = index;" class="contact-card">
         <td class="contact-name" data-label="Name">{{ contact.firstName }} {{ contact.lastName }}</td>
         <td class="contact-email" data-label="Email">{{ contact.emailAddress }}</td>
-        <td class="contact-trunks" data-label="Trunks">{{ contact.numTrunks }}</td>
         <td class="contact-address" data-label="Address">{{ contact.houseAddress }}</td>
       </tr>
     </tbody>

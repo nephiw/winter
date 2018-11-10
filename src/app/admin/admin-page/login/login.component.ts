@@ -25,11 +25,7 @@ export class LoginComponent implements OnInit {
 
   public login(): void {
     this.auth.login(this.authenticationForm.value).then(() => {
-      return this.router.navigate(['admin']);
+      return this.router.navigate(['admin', 'contacts']);
     });
-  }
-
-  public logout(): void {
-    this.auth.logout();
   }
 }
