@@ -3,11 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import { LoginComponent } from './admin-page/login/login.component';
 import { AdminService } from './admin.service';
 import { AuthService } from './auth.service';
-import { LoginComponent } from './admin-page/login/login.component';
-import { ContactsComponent, ContactsTableComponent, PasswordChangeComponent } from './admin-page';
+import { AuthGuard } from './auth-guard.service';
+import {
+  ContactsComponent,
+  ContactsTableComponent,
+  PasswordChangeComponent,
+  AdminPageComponent
+} from './admin-page';
 
 @NgModule({
   imports: [
@@ -26,7 +31,8 @@ import { ContactsComponent, ContactsTableComponent, PasswordChangeComponent } fr
   ],
   providers: [
     AdminService,
-    AuthService
+    AuthService,
+    AuthGuard
   ]
 })
 export class AdminModule { }

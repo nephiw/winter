@@ -2,20 +2,24 @@
   display: block;
   padding: 20px;
 
-  .logout {
-    margin-top: 1.6em;
-  }
-
-  .sub-nav {
-    color: whitesmoke;
-  }
-
   .sub-nav {
     margin-right: 1em;
   }
 
+  a {
+    color: #DA2128;
+
+    &:hover {
+      color: lighten(#DA2128, 10%);
+    }
+  }
+
   a.active {
-    color: #E2DAE3;
+    color: darken(#DA2128, 20%);
     cursor: default;
+
+    &:hover {
+      color: darken(#DA2128, 20%);
+    }
   }
 }

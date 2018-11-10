@@ -14,10 +14,10 @@ export class AdminService {
   ) {}
 
   public getAllContacts(): Observable < any[] > {
-    const houseRef = this.db.collection('/houses').valueChanges();
+    const entriesRef = this.db.collection('/entries').valueChanges();
     const contactsRef = this.db.collection('/contacts').valueChanges();
 
-    return zip(houseRef, contactsRef).pipe(
+    return zip(entriesRef, contactsRef).pipe(
       map(([houses, contacts]) => {
         const results = [];
 
