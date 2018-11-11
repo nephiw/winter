@@ -33,66 +33,26 @@ export class HouseService {
     return this.db.collection('entries').add(entry);
   }
 
-  public getHouses(): Observable<HouseEntry[]> {
-    const housesRef = this.db.collection<HouseEntry>('houses');
-    return housesRef.valueChanges().pipe(map((house) => {
-      return Object.assign({ selected: false }, house);
-    }));
+  public getEntries(): Observable<HouseEntry[]> {
+    return this.db.collection<HouseEntry>('entries').valueChanges();
   }
 
-  public saveVote(house: HouseEntry): Observable<HouseEntry> {
-    this.storage.set('selected', JSON.stringify(house));
-    let voteKey = this.storage.get('uuid');
+  public saveVote(entry: HouseEntry): Observable<HouseEntry> {
+    this.storage.set('selected', JSON.stringify(entry));
+    const voteKey = this.storage.get('uuid');
+    let voteRef;
     if (voteKey) {
-      this.db.doc(`/votes/${ voteKey }`).update(house);
+      voteRef = this.db.doc(`/votes/${ voteKey }`).update(entry);
     } else {
-      const voteRef = this.db.collection('votes').add(house);
-      from(voteRef).pipe(tap((documentRef) => {
-        voteKey = documentRef.id;
-        this.storage.set('uuid', documentRef.id);
-        return documentRef.id;
-      }));
+      voteRef = this.saveNewVote(entry);
     }
 
-    return this.db.doc<HouseEntry>(`/votes/${ voteKey }`).valueChanges();
+    return from(voteRef);
   }
 
-  // const contactKey = this.contactService.generateKey(data);
-  // const house = { contactKey, houseAddress: data.houseAddress };
-
-  // await this.contactService.createNewContact(data);
-
-  // const houses = this.db.object('/houses');
-  // houses.update({ [ contactKey ]: house });
-
-  // return this.db.object(`/houses/${ contactKey }`);
-
-
-
-  // public createNewContact(data): AngularFireObject<Contact> {
-    //   const contact = new Contact(data);
-    //   const contactKey = this.generateKey(contact);
-  //   contact.key = contactKey;
-  //   const contacts = this.db.object('/contacts');
-  //   contacts.update({ [ contactKey ]: contact });
-
-  //   return this.db.object(`/contact/${ contactKey }`);
-  // }
-
-  // public generateKey(data: { emailAddress: string }): string {
-  //   return data.emailAddress.replace(this.InvalidStringRegEx, '_');
-  // }
-
-  // public saveVote(house: HouseEntry): Observable <any> {
-  //   let voteKey = this.storage.get('uuid');
-  //   if (voteKey) {
-  //     this.db.object(`/houseVotes/${ voteKey }`).update(house);
-  //   } else {
-  //     voteKey = this.db.list('houseVotes').push(house).key;
-  //     this.storage.set('uuid', voteKey);
-  //   }
-
-  //   this.storage.set('selected', JSON.stringify(house));
-  //   return this.db.object(`/houseVotes/${ voteKey }`).valueChanges();
-  // }
+  private async saveNewVote(entry: HouseEntry) {
+    const voteRef = await this.db.collection('votes').add(entry);
+    this.storage.set('uuid', voteRef.id);
+    return voteRef;
+  }
 }

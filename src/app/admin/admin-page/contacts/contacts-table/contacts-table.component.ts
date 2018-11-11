@@ -9,8 +9,6 @@ export class ContactsTableComponent implements OnChanges {
   @Input() public contacts: any[];
   public totalHouses = 0;
 
-  public showHouses = true;
-
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.contacts && changes.contacts.currentValue) {
       if (this.contacts) {

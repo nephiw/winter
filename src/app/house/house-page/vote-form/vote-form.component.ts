@@ -3,7 +3,7 @@ import { take } from 'rxjs/operators';
 import { StorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { ToastrService } from 'ngx-toastr';
 import { HouseService } from 'house/house.service';
-import { HouseEntry } from 'common/models/house-entry';
+import { SelectableEntry } from 'common';
 
 @Component({
   selector: 'bc-vote-form',
@@ -11,7 +11,7 @@ import { HouseEntry } from 'common/models/house-entry';
   styleUrls: ['./vote-form.component.less']
 })
 export class VoteFormComponent implements OnInit {
-  public houses: HouseEntry[];
+  public entries: SelectableEntry[];
 
   constructor(
     @Inject(LOCAL_STORAGE) private storage: StorageService,
@@ -20,32 +20,39 @@ export class VoteFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.houseService.getHouses()
+    this.houseService.getEntries()
       .pipe(take(1))
-      .subscribe((houses) => {
-        this.houses = houses.sort((a, b) => {
+      .subscribe((entries) => {
+        this.entries = entries.sort((a, b) => {
           if (a.number < b.number) { return -1; }
           if (a.number === b.number) { return 0; }
           if (a.number > b.number) { return 1; }
+        }).map((entry) => {
+          return Object.assign({ selected: false }, entry);
         });
         const currentString = this.storage.get('selected');
         const currentSelection = currentString ? JSON.parse(currentString) : null;
 
         if (currentSelection) {
-          const previousSelection = this.houses.find((house) => house.houseAddress === currentSelection.houseAddress);
-          // previousSelection.selected = true;
+          const previousSelection = this.entries.find((house) => {
+            return house.houseAddress === currentSelection.houseAddress;
+          });
+          previousSelection.selected = true;
         }
     });
   }
 
-  public onHouseSelected(selectedHouse: HouseEntry): void {
-    // this.houses.forEach((house) => house.selected = false);
-    // selectedHouse.selected = true;
-    this.houseService.saveVote(selectedHouse)
+  public voteForEntry(entryVote: SelectableEntry): void {
+    const { selected, ...entry } = entryVote;
+
+    this.entries.forEach((house) => house.selected = false);
+    entryVote.selected = true;
+
+    this.houseService.saveVote(entry)
       .pipe(take(1))
       .subscribe((_results) => {
         this.toastr.success(
-          `You have successfully voted for ${ selectedHouse.houseAddress }. ` +
+          `You have successfully voted for ${ entryVote.houseAddress }. ` +
           `Clicking another address will update your vote.`
         );
       });

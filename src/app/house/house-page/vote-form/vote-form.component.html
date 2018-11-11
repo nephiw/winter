@@ -6,10 +6,8 @@
   a new address will change your vote, but do share with your friends!
 </p>
 <div class="entries">
-  <bc-house-entry *ngFor="let house of houses" [house]="house" (select)="onHouseSelected($event)">
+  <bc-house-entry *ngFor="let entry of entries"
+                  [house]="entry"
+                  (select)="voteForEntry($event)">
   </bc-house-entry>
 </div>
-<div class="return-home">
-  <a routerLink="/">Back Home</a>
-</div>
-

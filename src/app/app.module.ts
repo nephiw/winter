@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
@@ -28,6 +29,7 @@ const { firebase } = environment;
     AngularFireAuthModule,
     HomeModule,
     StorageServiceModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-full-width',
       preventDuplicates: true,

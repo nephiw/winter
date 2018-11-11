@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { HouseEntry } from 'common/models/house-entry';
+import { SelectableEntry } from 'common';
 
 @Component({
   selector: 'bc-house-entry',
@@ -7,8 +7,8 @@ import { HouseEntry } from 'common/models/house-entry';
   styleUrls: ['./house-entry.component.less']
 })
 export class HouseEntryComponent {
-  @Input() house: HouseEntry;
-  @Output() select: EventEmitter<HouseEntry> = new EventEmitter();
+  @Input() house: SelectableEntry;
+  @Output() select: EventEmitter<SelectableEntry> = new EventEmitter();
 
   public hideMe(event): void {
     event.target.setAttribute('hidden', 'hidden');

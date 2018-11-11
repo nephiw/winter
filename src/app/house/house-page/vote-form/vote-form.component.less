@@ -1,0 +1,15 @@
+.entries {
+  display: flex;
+  flex-wrap: wrap;
+
+  bc-house-entry {
+    width: calc(50% - 20px);
+    margin: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    bc-house-entry {
+      width: calc(100% - 20px);
+    }
+  }
+}
