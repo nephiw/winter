@@ -1,8 +1,20 @@
-<h1 class="cursive title">
-  <span class="light-red">Community</span><br>
-  <span class="dark-green">Ugly Christmas Sweater</span><br>
-  <span class="light-red">Party</span>
-</h1> 
+<h1 class="title-image centered-image">
+  <img src="/assets/images/logo.png" alt="Ugly Christmas Sweater">
+</h1>
+<div class="centered-image divider">
+  <img src="/assets/images/Snow-Divider.svg" alt="Snow Divider" aria-hidden="true">
+</div>
+
+<div class="event-details-wrapper">
+  <div>Saturday December 15, 2018</div>
+  <div>5:00pm - 8:00pm</div>
+  <div>at the Belle Creek Family Center</div>
+</div>
+
+<div class="centered-image divider">
+  <img src="/assets/images/Tree-Divider.svg" alt="Tree Divider" aria-hidden="true">
+</div>
+
 <div class="signups">
   <div class="clickable dark-green" *ngIf="acceptingHouses">
     <a routerLink="/house/form">Sign Up to participate in the house decoration competition!</a>
@@ -11,7 +23,8 @@
     <a routerLink="/house/vote">Vote for the best decorated house!</a>
   </div>
 </div>
-<div class="event-wrapper float right">
+
+<div class="event-wrapper">
   <div class="event-summary">
     <div class="gold cursive">Fun for Everyone</div>
     <div class="light-red">•&nbsp;House Decoration Competition&nbsp;•</div>
@@ -30,8 +43,6 @@
     <p class="gold">We’ll also be collecting toys for donation throughout the month of Decemeber.</p>
   </div>
 </div>
-<div class="float left tree">
-  <img src="/assets/images/tree.svg" alt="">
+<div class="gold admin-link">
+  <a [routerLink]="['/admin']">admin</a>
 </div>
-<div class="clearfix"></div>
-<a class="gold admin-link" [routerLink]="['/admin']">admin</a>
