@@ -8,12 +8,14 @@
       <th>Name</th>
       <th>Email</th>
       <th>Address</th>
+      <th>Votes</th>
     </thead>
     <tbody>
       <tr *ngFor="let contact of contacts; let idx = index;" class="contact-card">
         <td class="contact-name" data-label="Name">{{ contact.firstName }} {{ contact.lastName }}</td>
         <td class="contact-email" data-label="Email">{{ contact.emailAddress }}</td>
         <td class="contact-address" data-label="Address">{{ contact.houseAddress }}</td>
+        <td class="contact-votes" data-label="Votes">{{ contact.votes }}</td>
       </tr>
     </tbody>
   </table>
