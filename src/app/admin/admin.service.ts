@@ -26,6 +26,7 @@ export class AdminService {
           const house = houses.find((h: HouseEntry) => h.houseAddress === contact.houseAddress) as HouseEntry;
 
           results.push(Object.assign({
+            contactKey: house.contactKey,
             houseAddress: house ? house.houseAddress : '',
             votes: votes ? this.getVoteCount(votes, house.houseAddress) : 0
           }, contact));
