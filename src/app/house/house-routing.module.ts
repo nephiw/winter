@@ -10,9 +10,9 @@ import {
 const routes: Routes = [
   { path: '', redirectTo: 'form' },
   { path: '', component: HousePageComponent, children: [
-    { path: 'form',     component: HouseFormComponent },
+    { path: 'form', component: HouseFormComponent },
     { path: 'complete', component: HouseCompleteComponent },
-    { path: 'vote',     component: VoteFormComponent }
+    { path: 'vote', component: VoteFormComponent }
   ] }
 ];
 

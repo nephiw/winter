@@ -6,7 +6,8 @@
   a new address will change your vote, but do share with your friends!
 </p>
 <div class="entries">
-  <bc-house-entry *ngFor="let entry of entries"
+  <bc-house-entry *ngFor="let entry of entries; let idx = index"
+                  [idx]="idx"
                   [house]="entry"
                   (select)="voteForEntry($event)">
   </bc-house-entry>

@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Contact } from '../common/models/contact';
 import { from, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, first, tap } from 'rxjs/operators';
 import { StorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { HouseEntry } from '../common/models/house-entry';
 
@@ -35,6 +35,15 @@ export class HouseService {
 
   public getEntries(): Observable<HouseEntry[]> {
     return this.db.collection<HouseEntry>('entries').valueChanges();
+  }
+
+  public getEntry(contactKey: string): Observable<any> {
+    return this.getEntries().pipe(
+      first(),
+      map((entries) => {
+        return entries.find(entry => entry.contactKey === contactKey);
+      })
+    );
   }
 
   public saveVote(entry: HouseEntry): Observable<HouseEntry> {
