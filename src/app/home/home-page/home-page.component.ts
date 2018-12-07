@@ -12,7 +12,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     const now = (new Date()).getTime();
 
-    const houseCutoff = new Date('2018-12-08T23:55:00');
+    const houseCutoff = new Date('2018-12-07T23:55:00');
     const voteCutoff = new Date('2018-12-15T17:00:00');
 
     this.acceptingHouses = now < houseCutoff.getTime();

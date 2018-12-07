@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
   { path: 'house', loadChildren: './house/house.module#HouseModule' },
+  { path: 'donate', loadChildren: './donate/donate.module#DonateModule' },
   { path: '**', redirectTo: '' }
 ];
 
