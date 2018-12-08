@@ -46,7 +46,7 @@ export class HouseService {
     );
   }
 
-  public saveVote(entry: HouseEntry): Observable<HouseEntry> {
+  public saveVote(entry: Partial<HouseEntry>): Observable<HouseEntry> {
     this.storage.set('selected', JSON.stringify(entry));
     const voteKey = this.storage.get('uuid');
     let voteRef;
@@ -59,7 +59,7 @@ export class HouseService {
     return from(voteRef);
   }
 
-  private async saveNewVote(entry: HouseEntry) {
+  private async saveNewVote(entry: Partial<HouseEntry>) {
     const voteRef = await this.db.collection('votes').add(entry);
     this.storage.set('uuid', voteRef.id);
     return voteRef;

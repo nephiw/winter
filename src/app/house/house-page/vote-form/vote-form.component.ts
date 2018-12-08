@@ -43,7 +43,7 @@ export class VoteFormComponent implements OnInit {
   }
 
   public voteForEntry(entryVote: SelectableEntry): void {
-    const { selected, ...entry } = entryVote;
+    const { selected, imagePaths, createdAt, ...entry } = entryVote;
 
     this.entries.forEach((house) => house.selected = false);
     entryVote.selected = true;
