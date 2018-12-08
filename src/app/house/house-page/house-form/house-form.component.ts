@@ -26,7 +26,8 @@ export class HouseFormComponent implements OnInit {
       emailAddress: new FormControl('', [
         Validators.required,
         Validators.email
-      ])
+      ]),
+      phoneNumber: new FormControl('', Validators.required)
     });
   }
 

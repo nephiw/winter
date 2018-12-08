@@ -8,6 +8,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import 'hammerjs';
+import 'mousetrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
@@ -33,7 +36,8 @@ const { firebase } = environment;
     ToastrModule.forRoot({
       positionClass: 'toast-top-full-width',
       preventDuplicates: true,
-    })
+    }),
+    ModalGalleryModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
