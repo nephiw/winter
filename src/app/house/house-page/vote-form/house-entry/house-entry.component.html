@@ -1,6 +1,7 @@
 <div class="house-entry-container" [class.selected]="house.selected">
   <button class="btn btn-primary float right" (click)="select.emit(house)">Vote for me!</button>
   <div class="house-address">{{ house.number }}.) {{ house.houseAddress }}</div>
+  <div class="clearfix"></div>
   <div class="house-photo">
     <ks-modal-gallery *ngIf="house"
                       [id]="idx"

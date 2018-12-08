@@ -22,10 +22,13 @@ export class HouseEntryComponent {
   }
 
   public buildImages(paths): any[] {
-    const imagePaths = paths.map((path) => `assets/images/houses/${ path }`);
     let imageId = 0;
-    return imagePaths.map(img => {
-      return new Image(++imageId, { img });
+    return paths.map((path) => {
+      const fullPath = `assets/images/houses/${ this.house.number }`;
+      const image = `${ fullPath }/${ path }`;
+      const thumb = `${ fullPath }/tb_${ path }`;
+
+      return new Image(++imageId, { img: image, description: this.house.houseAddress }, { img: thumb });
     });
   }
 
