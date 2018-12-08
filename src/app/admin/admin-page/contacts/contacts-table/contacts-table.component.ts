@@ -20,4 +20,40 @@ export class ContactsTableComponent implements OnChanges {
       }
     }
   }
+
+  public sortByNumber(): void {
+    this.sortAscending('number');
+  }
+
+  public sortByFirstName(): void {
+    this.sortAscending('firstName');
+  }
+
+  public sortByLastName(): void {
+    this.sortAscending('lastName');
+  }
+
+  public sortByVotes(): void {
+    this.sortDescending('votes');
+  }
+
+  public sortByCreation(): void {
+    this.sortAscending('createdAt');
+  }
+
+  private sortAscending(key: string): void {
+    this.contacts.sort((a, b) => {
+      if (a[key] < b[key]) { return -1; }
+      if (a[key] === b[key]) { return 0; }
+      if (a[key] > b[key]) { return 1; }
+    });
+  }
+
+  private sortDescending(key: string): void {
+    this.contacts.sort((a, b) => {
+      if (a[key] < b[key]) { return 1; }
+      if (a[key] === b[key]) { return 0; }
+      if (a[key] > b[key]) { return -1; }
+    });
+  }
 }
