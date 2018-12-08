@@ -53,7 +53,7 @@ export class VoteFormComponent implements OnInit {
       .subscribe((_results) => {
         this.toastr.success(
           `You have successfully voted for ${ entryVote.houseAddress }. ` +
-          `Clicking another address will update your vote.`
+          `Clicking another house will update your vote.`
         );
       });
   }
