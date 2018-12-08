@@ -28,7 +28,9 @@ export class AdminService {
           results.push(Object.assign({
             contactKey: house.contactKey,
             houseAddress: house ? house.houseAddress : '',
-            votes: votes ? this.getVoteCount(votes, house.houseAddress) : 0
+            votes: votes ? this.getVoteCount(votes, house.houseAddress) : 0,
+            number: house.number,
+            createdAt: house.createdAt
           }, contact));
         });
         return results;

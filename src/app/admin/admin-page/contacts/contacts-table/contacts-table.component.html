@@ -3,8 +3,17 @@
     <div class="house-totals">There are currently {{ totalHouses }} decorated houses signed up.</div>
   </div>
 
+  <div class="sorting">
+    <button (click)="sortByNumber()" class="clickable btn">Sort By Number</button>
+    <button (click)="sortByFirstName()" class="clickable btn">Sort By First Name</button>
+    <button (click)="sortByLastName()" class="clickable btn">Sort By Last Name</button>
+    <button (click)="sortByVotes()" class="clickable btn">Sort By Votes</button>
+    <button (click)="sortByCreation()" class="clickable btn">Sort By Creation Date</button>
+  </div>
+
   <table>
     <thead>
+      <th>Num</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
@@ -13,6 +22,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let contact of contacts; let idx = index;" class="contact-card">
+        <td class="contact-number" data-label="Number">{{ contact.number}}</td>
         <td class="contact-name" data-label="Name">{{ contact.firstName }} {{ contact.lastName }}</td>
         <td class="contact-email" data-label="Email">{{ contact.emailAddress }}</td>
         <td class="contact-phone" data-label="Phone">{{ contact.phoneNumber }}</td>
