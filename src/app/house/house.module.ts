@@ -11,6 +11,7 @@ import {
   VoteFormComponent,
   HouseEntryComponent
 } from './house-page';
+import { HouseEndedComponent } from './house-page/house-ended/house-ended.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {
     HouseFormComponent,
     HouseCompleteComponent,
     VoteFormComponent,
-    HouseEntryComponent
+    HouseEntryComponent,
+    HouseEndedComponent
   ]
 })
 export class HouseModule { }

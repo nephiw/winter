@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
   HousePageComponent,
-  HouseFormComponent,
   HouseCompleteComponent,
   VoteFormComponent
 } from './house-page';
+import { HouseEndedComponent } from './house-page/house-ended/house-ended.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'form' },
+  { path: '', redirectTo: 'vote' },
   { path: '', component: HousePageComponent, children: [
-    { path: 'form', component: HouseFormComponent },
+    { path: 'form', redirectTo: 'ended' },
     { path: 'complete', component: HouseCompleteComponent },
+    { path: 'ended', component: HouseEndedComponent },
     { path: 'vote', component: VoteFormComponent }
   ] }
 ];
