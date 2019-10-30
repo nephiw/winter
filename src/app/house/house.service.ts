@@ -46,7 +46,7 @@ export class HouseService {
     );
   }
 
-  public saveVote(entry: Partial<HouseEntry>): Observable<HouseEntry> {
+  public saveVote(entry: Partial<HouseEntry>): Observable<any> {
     this.storage.set('selected', JSON.stringify(entry));
     const voteKey = this.storage.get('uuid');
     let voteRef;

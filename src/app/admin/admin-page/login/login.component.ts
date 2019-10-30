@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'admin/auth.service';
+import { AuthService } from '@app/admin/auth.service';
 
 @Component({
   selector: 'bc-login',

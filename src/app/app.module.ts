@@ -8,7 +8,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { ToastrModule } from 'ngx-toastr';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import 'hammerjs';
 import 'mousetrap';
 
@@ -28,7 +28,7 @@ const { firebase } = environment;
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(firebase),
+    AngularFireModule.initializeApp(firebase.default),
     AngularFireAuthModule,
     HomeModule,
     StorageServiceModule,
@@ -37,7 +37,7 @@ const { firebase } = environment;
       positionClass: 'toast-top-full-width',
       preventDuplicates: true,
     }),
-    ModalGalleryModule.forRoot()
+    GalleryModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

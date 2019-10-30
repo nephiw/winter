@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { HouseRoutingModule } from './house-routing.module';
 
 import {
@@ -18,7 +18,7 @@ import { HouseEndedComponent } from './house-page/house-ended/house-ended.compon
     CommonModule,
     ReactiveFormsModule,
     HouseRoutingModule,
-    ModalGalleryModule
+    GalleryModule
   ],
   declarations: [
     HousePageComponent,

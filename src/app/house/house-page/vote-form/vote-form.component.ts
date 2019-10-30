@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { StorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { ToastrService } from 'ngx-toastr';
-import { HouseService } from 'house/house.service';
-import { SelectableEntry } from 'common';
+import { HouseService } from '@app/house/house.service';
+import { SelectableEntry } from '@common/models';
 
 @Component({
   selector: 'bc-vote-form',

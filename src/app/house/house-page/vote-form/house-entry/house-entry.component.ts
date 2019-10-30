@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Image } from '@ks89/angular-modal-gallery';
-import { SelectableEntry } from 'common';
+import { SelectableEntry } from '@common/models';
 
 @Component({
   selector: 'bc-house-entry',
