@@ -5,7 +5,12 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "@test/*": ["src/test/*"],
+      "@app/*": ["src/app/*"],
+      "@common/*": ["src/app/common/*"]
+    }
   },
   "files": [
     "src/test.ts",

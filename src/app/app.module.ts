@@ -6,7 +6,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-import { StorageServiceModule } from 'ngx-webstorage-service';
 import { ToastrModule } from 'ngx-toastr';
 import { GalleryModule } from '@ks89/angular-modal-gallery';
 import 'hammerjs';
@@ -18,6 +17,14 @@ import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
 const { firebase } = environment;
+
+export function windowFactory() {
+  return window;
+}
+
+export function documentFactory() {
+  return document;
+}
 
 @NgModule({
   declarations: [
@@ -31,7 +38,6 @@ const { firebase } = environment;
     AngularFireModule.initializeApp(firebase.default),
     AngularFireAuthModule,
     HomeModule,
-    StorageServiceModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-full-width',
@@ -39,7 +45,10 @@ const { firebase } = environment;
     }),
     GalleryModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: 'Window', useFactory: windowFactory },
+    { provide: 'Document', useFactory: documentFactory }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
