@@ -1,7 +1,7 @@
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'admin/auth.service';
+import { AuthService } from '@app/admin/auth.service';
 
 @Component({
   selector: 'bc-password-change',

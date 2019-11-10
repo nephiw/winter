@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { LoadingState } from 'common';
+import { LoadingState } from '@common/constants';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HouseService } from 'house/house.service';
+import { HouseService } from '@app/house/house.service';
 
 @Component({
   selector: 'bc-house-form',

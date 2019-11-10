@@ -6,9 +6,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-import { StorageServiceModule } from 'ngx-webstorage-service';
 import { ToastrModule } from 'ngx-toastr';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import 'hammerjs';
 import 'mousetrap';
 
@@ -19,6 +18,14 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 const { firebase } = environment;
 
+export function windowFactory() {
+  return window;
+}
+
+export function documentFactory() {
+  return document;
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -28,18 +35,20 @@ const { firebase } = environment;
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(firebase),
+    AngularFireModule.initializeApp(firebase.default),
     AngularFireAuthModule,
     HomeModule,
-    StorageServiceModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-full-width',
       preventDuplicates: true,
     }),
-    ModalGalleryModule.forRoot()
+    GalleryModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: 'Window', useFactory: windowFactory },
+    { provide: 'Document', useFactory: documentFactory }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Contact } from 'common/models/contact';
-import { HouseEntry } from 'common/models/house-entry';
+import { Contact } from '@common/models/contact';
+import { HouseEntry } from '@common/models/house-entry';
 
 @Injectable({
   providedIn: 'root'

@@ -1,15 +1,18 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AdminService } from './admin.service';
 
 describe('AdminService', () => {
+  let service: AdminService;
+  let db: jasmine.SpyObj<AngularFirestore>;
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [AdminService]
-    });
+    db = jasmine.createSpyObj('AngularFirestore', ['collection']);
+
+    service = new AdminService(db);
   });
 
-  it('should be created', inject([AdminService], (service: AdminService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 });
