@@ -18,14 +18,11 @@
 </div>
 
 <div class="signups">
-  <div class="clickable dark-green" *ngIf="acceptingHouses">
+  <div class="clickable dark-green decorate" *ngIf="isHousesLive()">
     <a routerLink="/house/form">Sign Up to participate in the house decoration competition!</a>
   </div>
-  <div class="clickable dark-green" *ngIf="acceptingVotes">
+  <div class="clickable dark-green vote" *ngIf="isVotingLive()">
     <a routerLink="/house/vote">Vote for the best decorated house!</a>
-  </div>
-  <div class="clickable light-green">
-    <a routerLink="/donate">Learn about donating socks to the homeless and struggling.</a>
   </div>
 </div>
 
