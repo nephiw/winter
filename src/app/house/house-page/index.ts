@@ -1,3 +1,4 @@
+export * from './detail-page';
 export * from './house-complete';
 export * from './house-form';
 export * from './vote-form';

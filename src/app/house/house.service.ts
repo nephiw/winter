@@ -44,11 +44,20 @@ export class HouseService {
     return this.db.collection<HouseEntry>('entries').valueChanges();
   }
 
-  public getEntry(contactKey: string): Observable<any> {
+  public getHouseByContact(contactKey: string): Observable<any> {
     return this.getEntries().pipe(
       first(),
       map(entries => {
         return entries.find(entry => entry.contactKey === contactKey);
+      })
+    );
+  }
+
+  public getHouseByEntry(entryNumber: number): Observable<any> {
+    return this.getEntries().pipe(
+      first(),
+      map(entries => {
+        return entries.find(entry => entry.number === entryNumber);
       })
     );
   }

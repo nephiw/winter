@@ -1,0 +1,40 @@
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.square {
+  flex: 1;
+  margin: 10px;
+}
+
+.square > img {
+  max-height: 300px;
+}
+
+@media (max-width: 400px) {
+  .images {
+    display: block;
+  }
+}
+
+.cover {
+  position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;	
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .85;
+}
+
+.modal img {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

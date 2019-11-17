@@ -5,7 +5,8 @@ import {
   HouseCompleteComponent,
   VoteFormComponent,
   HouseFormComponent,
-  HouseEndedComponent
+  HouseEndedComponent,
+  DetailPageComponent
 } from './house-page';
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
     { path: 'form', component: HouseFormComponent },
     { path: 'complete', component: HouseCompleteComponent },
     { path: 'ended', component: HouseEndedComponent },
-    { path: 'vote', component: VoteFormComponent }
+    { path: 'vote', component: VoteFormComponent },
+    { path: ':entry', component: DetailPageComponent }
   ] }
 ];
 

@@ -100,11 +100,11 @@ describe('HouseService', () => {
 
     beforeEach(() => {
       entrySpy = jasmine.createSpy('entry');
-      service.getEntry('contact-key').subscribe(entrySpy);
+      service.getHouseByContact('contact-key').subscribe(entrySpy);
     });
 
     it('fetches all of the entries', () => {
-      service.getEntry('contact-key');
+      service.getHouseByContact('contact-key');
 
       expect(db.collection).toHaveBeenCalledWith('entries');
       expect(collection.valueChanges).toHaveBeenCalled();
