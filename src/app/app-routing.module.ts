@@ -6,7 +6,6 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'house', loadChildren: () => import('./house/house.module').then(m => m.HouseModule) },
-  { path: 'donate', loadChildren: () => import('./donate/donate.module').then(m => m.DonateModule) },
   { path: '**', redirectTo: '' }
 ];
 

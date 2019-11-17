@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
@@ -27,27 +27,27 @@ export function documentFactory() {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(firebase.default),
+    AngularFireModule,
     AngularFireAuthModule,
     HomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-full-width',
-      preventDuplicates: true,
+      preventDuplicates: true
     }),
     GalleryModule.forRoot()
   ],
   providers: [
     { provide: 'Window', useFactory: windowFactory },
-    { provide: 'Document', useFactory: documentFactory }
+    { provide: 'Document', useFactory: documentFactory },
+    // this is required to get AOT working
+    { provide: FirebaseOptionsToken, useValue: firebase.default }
   ],
   bootstrap: [AppComponent]
 })
