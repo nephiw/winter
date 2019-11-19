@@ -16,6 +16,7 @@ import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
+import { SharedModule } from './common/shared.module';
 const { firebase } = environment;
 
 export function windowFactory() {
@@ -29,6 +30,7 @@ export function documentFactory() {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

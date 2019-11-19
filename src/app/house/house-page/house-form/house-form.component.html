@@ -1,10 +1,25 @@
 <h1 class="stylized">Home Decorations</h1>
-<p>
-  Sign up here to join the Belle Creek holiday decoration contest and compete with your neighbors for who has the best
-  decorated house in the community. Sign up before the December 7th deadline and we will provide you with a sign telling
-  your neighbors that you are participating. They can then vote for the best decorations between December 8th and 
-  December 15th.
-</p>
+
+<div class="container">
+  <div class="col-2">
+    <h3 class="sponsor">
+      Sponsored by the
+      <a href="https://www.westerhometeam.com/" target="wester">Wester Home Team</a>
+    </h3>
+    <p>
+      Sign up here to join the Belle Creek holiday decoration contest and
+      compete with your neighbors for who has the best decorated house in the
+      community.
+    </p><p>
+      Sign up before the {{ signupCutoff | ordinalDate }} deadline and we will provide
+      you with a sign telling your neighbors that you are participating. They
+      can then vote for the best decorations until {{ voteCutoff | ordinalDate }}.
+    </p>
+  </div>
+  <div class="col-1">
+    <img class="wester_logo" src="/assets/images/wester_logo.jpg" />
+  </div>
+</div>
 <form [formGroup]="houseForm" (ngOnSubmit)="submitSignupForm()">
   <div class="input-item group">
     <input required type="text" formControlName="firstName" />
@@ -42,10 +57,12 @@
   </div>
 
   <div>
-    <button class="btn btn-submit"
-            [disabled]="houseForm.invalid || houseForm.pristine"
-            (click)="submitSignupForm()"
-            type="button">
+    <button
+      class="btn btn-submit"
+      [disabled]="houseForm.invalid || houseForm.pristine"
+      (click)="submitSignupForm()"
+      type="button"
+    >
       Sign Up
     </button>
   </div>

@@ -12,10 +12,12 @@ import {
   HouseEntryComponent
 } from './house-page';
 import { HouseEndedComponent } from './house-page/house-ended/house-ended.component';
+import { SharedModule } from '@app/common/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     HouseRoutingModule,
     GalleryModule
