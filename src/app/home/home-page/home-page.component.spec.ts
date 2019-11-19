@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DateService } from '../date.service';
+import { DateService } from '@app/common/date';
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {

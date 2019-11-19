@@ -3,6 +3,7 @@ import { LoadingState } from '@common/constants';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HouseService } from '@app/house/house.service';
+import { DateService } from '@app/common/date';
 
 @Component({
   selector: 'bc-house-form',
@@ -12,10 +13,13 @@ import { HouseService } from '@app/house/house.service';
 export class HouseFormComponent implements OnInit {
   @Output() public stateChange: EventEmitter<LoadingState> = new EventEmitter();
   public houseForm: FormGroup;
+  public signupCutoff = this.dateService.houseCutoff;
+  public voteCutoff = this.dateService.voteCutoff;
 
   constructor(
-    private houseService: HouseService,
-    private router: Router
+    private readonly houseService: HouseService,
+    private readonly dateService: DateService,
+    private readonly router: Router
   ) { }
 
   ngOnInit() {

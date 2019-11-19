@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DateService } from '../date.service';
+import { DateService } from '@app/common/date';
 
 @Component({
   selector: 'bc-home-page',
