@@ -1,0 +1,10 @@
+<p>These are all of the contacts who have signed up to decorate their homes.</p>
+<div class="contacts">
+  <div class="summary">
+    <div class="house-totals">
+      There are currently {{ totalHouses$ | async }} decorated houses signed up.
+    </div>
+  </div>
+  <bc-house-table [houses]="houses$ | async"></bc-house-table>
+</div>
+

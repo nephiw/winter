@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { LoginComponent } from './admin-page/login/login.component';
@@ -11,7 +12,13 @@ import {
   ContactsComponent,
   ContactsTableComponent,
   PasswordChangeComponent,
-  AdminPageComponent
+  AdminPageComponent,
+  HouseTableComponent,
+  HousePageComponent,
+  PhotoEditorComponent,
+  HouseDetailPageComponent,
+  NumberInputComponent,
+  LoadingComponent
 } from './admin-page';
 
 @NgModule({
@@ -19,7 +26,8 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    AngularFireStorageModule
   ],
   declarations: [
     ContactsComponent,
@@ -27,7 +35,13 @@ import {
     LoginComponent,
     PasswordChangeComponent,
     AdminPageComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingComponent,
+    HouseTableComponent,
+    HousePageComponent,
+    PhotoEditorComponent,
+    HouseDetailPageComponent,
+    NumberInputComponent
   ],
   providers: [
     AdminService,

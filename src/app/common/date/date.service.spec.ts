@@ -6,9 +6,14 @@ describe('DateService', () => {
   let yesterday: Date;
   let nextWeek: Date;
   let lastWeek: Date;
+  let dateBuilder: jasmine.SpyObj<{ build: (params: any) => Date}>;
 
   beforeEach(() => {
     const now = new Date();
+
+    dateBuilder = jasmine.createSpyObj('dateBuilder', ['build']);
+    dateBuilder.build.and.returnValue(now);
+
     tomorrow = new Date();
     tomorrow.setDate(now.getDate() + 1);
 
@@ -21,11 +26,7 @@ describe('DateService', () => {
     lastWeek = new Date();
     lastWeek.setDate(now.getDate() - 7);
 
-    service = new DateService();
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+    service = new DateService(dateBuilder);
   });
 
   describe('isVotingLive', () => {
