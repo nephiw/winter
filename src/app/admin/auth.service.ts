@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
 
-@Injectable({
-  providedIn: 'root'
-})
+interface Credentials {
+  email: string;
+  password: string;
+}
+
+@Injectable()
 export class AuthService {
   constructor(
-    private service: AngularFireAuth,
-    private toastr: ToastrService
+    private readonly service: AngularFireAuth,
+    private readonly toastr: ToastrService
   ) {}
 
-  public login(credentials: { email: string; password: string }) {
+  public login(credentials: Credentials): Promise<any> {
     const { email, password } = credentials;
     return this.service.auth.signInWithEmailAndPassword(email, password);
   }
@@ -19,11 +22,15 @@ export class AuthService {
   public async logout(): Promise<void> {
     try {
       await this.service.auth.signOut();
-    } catch (_error) {}
+    } catch (error) {}
   }
 
-  public isLoggedIn(): boolean {
-    return !!this.service.auth.currentUser;
+  public isLoggedIn(): Promise<boolean> {
+    return new Promise((resolve: any) => {
+      this.service.auth.onAuthStateChanged(( user: any ) => {
+        user ? resolve(true) : resolve(false);
+      });
+    });
   }
 
   // Instead of loging out and back in before changing the password, which is required
@@ -34,13 +41,13 @@ export class AuthService {
     newPassword: string
   ): Promise<void> {
     try {
-      const email = this.service.auth.currentUser.email;
+      const { email } = this.service.auth.currentUser;
 
-      await this.logout();
-      await this.login({ email, password: oldPassword });
-      const user = this.service.auth.currentUser;
-      await user.updatePassword(newPassword);
-    } catch (_error) {
+      await this.service.auth.signOut();
+      await this.service.auth.signInWithEmailAndPassword(email, oldPassword);
+      const { currentUser } = this.service.auth;
+      await currentUser.updatePassword(newPassword);
+    } catch (error) {
       this.toastr.error(`There was an error updating the password`);
     }
   }

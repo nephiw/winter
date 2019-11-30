@@ -1,153 +1,106 @@
-import {
-  TestBed,
-  inject,
-  flushMicrotasks,
-  fakeAsync
-} from '@angular/core/testing';
+import { FirebaseAuth } from '@angular/fire';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { AuthService } from './auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'firebase';
-import { NativeDeferred, createNativeDeferred } from 'src/test/utils';
-import { FirebaseAuth } from '@angular/fire';
+import { flushMicrotasks, fakeAsync } from '@angular/core/testing';
+import { createNativeDeferred, NativeDeferred } from '@test/utils';
 
 describe('AuthService', () => {
-  let angularFireAuth: AngularFireAuth;
-  let auth: jasmine.SpyObj<FirebaseAuth>;
-  let toastrService: jasmine.SpyObj<ToastrService>;
   let service: AuthService;
-
-  let signOutDeferred: NativeDeferred<void>;
-  let signInDeferred: NativeDeferred<any>;
+  let afa: { auth: jasmine.SpyObj<FirebaseAuth> };
+  let toastr: jasmine.SpyObj<ToastrService>;
 
   beforeEach(() => {
-    signOutDeferred = createNativeDeferred();
-    signInDeferred = createNativeDeferred();
+    afa = {
+      auth: jasmine.createSpyObj('FirebaseAuth', [
+        'signInWithEmailAndPassword',
+        'signOut',
+        'onAuthStateChanged'
+      ])
+    };
+    toastr = jasmine.createSpyObj('ToastrService', ['error']);
 
-    auth = jasmine.createSpyObj('AngularFireAuth', [
-      'signInWithEmailAndPassword',
-      'signOut'
-    ]);
-
-    angularFireAuth = ({
-      auth,
-      currentUser: null
-    } as unknown) as AngularFireAuth;
-
-    toastrService = jasmine.createSpyObj('ToastrService', ['error']);
-
-    service = new AuthService(angularFireAuth, toastrService);
-
-    auth.signOut.and.returnValue(signOutDeferred.promise);
-    auth.signInWithEmailAndPassword.and.returnValue(signInDeferred.promise);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+    service = new AuthService((afa as any) as AngularFireAuth, toastr);
   });
 
   describe('login', () => {
-    let onLoginSpy: jasmine.Spy;
-    let onLoginErrorSpy: jasmine.Spy;
-
-    beforeEach(() => {
-      onLoginSpy = jasmine.createSpy('onLogout');
-      onLoginErrorSpy = jasmine.createSpy('onLogoutError');
-      service
-        .login({ email: 'albert@example.com', password: 'password' })
-        .then(onLoginSpy, onLoginErrorSpy);
-    });
-
-    it('calls sign in for firebase', fakeAsync(() => {
-      expect(auth.signInWithEmailAndPassword).toHaveBeenCalledWith(
+    it('forwards the login to FirebaseAuth', () => {
+      service.login({ email: 'albert@example.com', password: 'Password' });
+      expect(afa.auth.signInWithEmailAndPassword).toHaveBeenCalledWith(
         'albert@example.com',
-        'password'
+        'Password'
       );
-      signInDeferred.resolve();
-      flushMicrotasks();
-      expect(onLoginSpy).toHaveBeenCalled();
-    }));
-
-    it('does not swallow the error', fakeAsync(() => {
-      signInDeferred.reject();
-      flushMicrotasks();
-
-      expect(onLoginSpy).not.toHaveBeenCalled();
-      expect(onLoginErrorSpy).toHaveBeenCalled();
-    }));
+    });
   });
 
   describe('logout', () => {
-    let onLogoutSpy: jasmine.Spy;
-    let onLogoutErrorSpy: jasmine.Spy;
-
-    beforeEach(() => {
-      onLogoutSpy = jasmine.createSpy('onLogout');
-      onLogoutErrorSpy = jasmine.createSpy('onLogoutError');
-      service.logout().then(onLogoutSpy, onLogoutErrorSpy);
+    it('forwards teh login to FirebaseAuth', () => {
+      service.logout();
+      expect(afa.auth.signOut).toHaveBeenCalled();
     });
-
-    it('calls signOut on auth', fakeAsync(() => {
-      expect(angularFireAuth.auth.signOut).toHaveBeenCalled();
-      signOutDeferred.resolve();
-      flushMicrotasks();
-      expect(onLogoutSpy).toHaveBeenCalled();
-    }));
-
-    it('captures errors', fakeAsync(() => {
-      signOutDeferred.reject();
-      flushMicrotasks();
-
-      expect(onLogoutSpy).toHaveBeenCalled();
-      expect(onLogoutErrorSpy).not.toHaveBeenCalled();
-    }));
   });
 
   describe('isLoggedIn', () => {
-    it('returns false if there is no current user', () => {
-      angularFireAuth.auth.currentUser = null;
-      expect(service.isLoggedIn()).toBe(false);
+    let resolveSpy: jasmine.Spy;
+    let callback: any;
+
+    beforeEach(() => {
+      resolveSpy = jasmine.createSpy('resolve');
+      service.isLoggedIn().then(resolveSpy);
+      callback = afa.auth.onAuthStateChanged.calls.mostRecent().args[0];
     });
 
-    it('returns true if there is a current user', () => {
-      angularFireAuth.auth.currentUser = {} as User;
-      expect(service.isLoggedIn()).toBe(true);
-    });
+    it('should resolve to true if there is a user', fakeAsync(() => {
+      callback({});
+      flushMicrotasks();
+      expect(resolveSpy).toHaveBeenCalledWith(true);
+    }));
+
+    it('should resolve to false if there is no user', fakeAsync(() => {
+      callback(null);
+      flushMicrotasks();
+      expect(resolveSpy).toHaveBeenCalledWith(false);
+    }));
   });
 
   describe('changePassword', () => {
+    let currentUser: jasmine.SpyObj<firebase.User>;
+    let signOutDeferred: NativeDeferred<void>;
+    let signInDeferred: NativeDeferred<any>;
     let updatePasswordDeferred: NativeDeferred<any>;
 
     beforeEach(() => {
+      currentUser = jasmine.createSpyObj('firebase.User', ['updatePassword']);
+      currentUser.email = 'albert@example.com';
+      afa.auth.currentUser = currentUser as firebase.User;
+
+      signOutDeferred = createNativeDeferred();
+      afa.auth.signOut.and.returnValue(signOutDeferred.promise);
+
+      signInDeferred = createNativeDeferred();
+      afa.auth.signInWithEmailAndPassword.and.returnValue(signInDeferred.promise);
+
       updatePasswordDeferred = createNativeDeferred();
-      auth.currentUser = ({
-        email: 'albert@example.com',
-        updatePassword: jasmine.createSpy('updatePassword')
-      } as unknown) as User;
-
-      (auth.currentUser.updatePassword as jasmine.Spy).and.returnValue(
-        updatePasswordDeferred.promise
-      );
+      currentUser.updatePassword.and.returnValue(updatePasswordDeferred.promise);
     });
 
-    it('logs out of the current user', () => {
+    it('starts by logging you out', () => {
       service.changePassword('oldPassword', 'newPassword');
-      expect(auth.signOut).toHaveBeenCalled();
+      expect(afa.auth.signOut).toHaveBeenCalled();
     });
 
-    it('logs in with the email and old password', fakeAsync(() => {
+    it('logs you back in with the old password', fakeAsync(() => {
       service.changePassword('oldPassword', 'newPassword');
       signOutDeferred.resolve();
       flushMicrotasks();
-
-      expect(auth.signInWithEmailAndPassword).toHaveBeenCalledWith(
+      expect(afa.auth.signInWithEmailAndPassword).toHaveBeenCalledWith(
         'albert@example.com',
         'oldPassword'
       );
     }));
 
-    it('calls updatePassword on the current user', fakeAsync(() => {
+    it('calls updatePassword on the currentUser', fakeAsync(() => {
       service.changePassword('oldPassword', 'newPassword');
       signOutDeferred.resolve();
       flushMicrotasks();
@@ -155,48 +108,46 @@ describe('AuthService', () => {
       signInDeferred.resolve();
       flushMicrotasks();
 
-      expect(auth.currentUser.updatePassword).toHaveBeenCalledWith(
+      expect(currentUser.updatePassword).toHaveBeenCalledWith(
         'newPassword'
       );
     }));
 
-    it('resolves', fakeAsync(() => {
-      const resolveSpy = jasmine.createSpy('resolve');
-      service.changePassword('oldPassword', 'newPassword').then(resolveSpy);
-      signOutDeferred.resolve();
-      flushMicrotasks();
-
-      signInDeferred.resolve();
-      flushMicrotasks();
-
-      updatePasswordDeferred.resolve();
-      flushMicrotasks();
-
-      expect(resolveSpy).toHaveBeenCalled();
-    }));
-
-    describe('when rejected', () => {
-      beforeEach(fakeAsync(() => {
+    describe('when there are errors', () => {
+      it('shows an error when logout fails', fakeAsync(() => {
         service.changePassword('oldPassword', 'newPassword');
+
+        signOutDeferred.reject(new Error('Not Authenticated'));
+        flushMicrotasks();
+
+        expect(toastr.error).toHaveBeenCalled();
+      }));
+
+      it('shows an error when login fails', fakeAsync(() => {
+        service.changePassword('oldPassword', 'newPassword');
+
         signOutDeferred.resolve();
         flushMicrotasks();
-      }));
 
-      it('shows a toastr error when login fails', fakeAsync(() => {
-        signInDeferred.reject();
+        signInDeferred.reject(new Error('Bad Old Password'));
         flushMicrotasks();
 
-        expect(toastrService.error).toHaveBeenCalled();
+        expect(toastr.error).toHaveBeenCalled();
       }));
 
-      it('shows a toastr error when update fails', fakeAsync(() => {
+      it('shows an error when update fails', fakeAsync(() => {
+        service.changePassword('oldPassword', 'newPassword');
+
+        signOutDeferred.resolve();
+        flushMicrotasks();
+
         signInDeferred.resolve();
         flushMicrotasks();
 
-        updatePasswordDeferred.reject();
+        updatePasswordDeferred.reject(new Error('Unfortunate Password'));
         flushMicrotasks();
 
-        expect(toastrService.error).toHaveBeenCalled();
+        expect(toastr.error).toHaveBeenCalled();
       }));
     });
   });

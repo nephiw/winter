@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { LoginComponent } from './admin-page/login/login.component';
 import { AdminService } from './admin.service';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
 import {
   ContactsComponent,
   ContactsTableComponent,
@@ -27,7 +28,9 @@ import {
     FormsModule,
     ReactiveFormsModule,
     AdminRoutingModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+    AngularFireAuthGuardModule
   ],
   declarations: [
     ContactsComponent,
@@ -45,8 +48,7 @@ import {
   ],
   providers: [
     AdminService,
-    AuthService,
-    AuthGuard
+    AuthService
   ]
 })
 export class AdminModule { }
