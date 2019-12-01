@@ -1,4 +1,5 @@
 export * from './contacts';
+export * from './house-detail-page';
 export * from './house-page';
 export * from './login';
 export * from './password-change';

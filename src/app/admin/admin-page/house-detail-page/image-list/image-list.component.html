@@ -1,0 +1,6 @@
+<div class="image-container">
+  <div class="image-shell" *ngFor="let path of house.imagePaths">
+    <button class="delete-button" (click)="deletePath.emit(path)">Delete</button>
+      <img class="house-image" [src]="path" />
+  </div>
+</div>

@@ -1,6 +1,6 @@
-<label class="file-upload" for="file" [class.error]="error || errorSize">
-  File: <input type="file" (change)="upload($event)" accept=".png,.jpg" />
-</label>
+<bc-upload-button [error]="error || errorSize" (upload)="upload($event)">
+  Upload New Image
+</bc-upload-button>
 
 <div *ngIf="errorSize" class="error-text">
   That image is too large, upload size is restricted to 10MB.
@@ -16,6 +16,7 @@
   <bc-loading [progress]="uploadPercent$"></bc-loading>
 </div>
 
-<div *ngIf="house">
-  <img class="house-image" [src]="house.imagePaths[0]" />
-</div>
+<bc-image-list *ngIf="house && house.imagePaths.length > 0"
+               (deletePath)="delete($event)"
+               [house]="house">
+</bc-image-list>

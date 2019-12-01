@@ -18,7 +18,7 @@ import {
 const toLogin = () => redirectUnauthorizedTo(['admin', 'login']);
 
 const routes: Routes = [
-  { path: '', redirectTo: 'contacts', pathMatch: 'full' },
+  { path: '', redirectTo: 'houses', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: '',
@@ -26,11 +26,11 @@ const routes: Routes = [
     data: { authGuardPipe: toLogin },
     component: AdminPageComponent,
     children: [
-      { path: 'password', component: PasswordChangeComponent },
-      { path: 'contacts', component: ContactsComponent },
       { path: 'houses', component: HousePageComponent, pathMatch: 'full' },
       { path: 'houses/:num', component: HouseDetailPageComponent },
-      { path: 'votes', component: VotingPageComponent }
+      { path: 'contacts', component: ContactsComponent },
+      { path: 'votes', component: VotingPageComponent },
+      { path: 'password', component: PasswordChangeComponent }
     ]
   }
 ];

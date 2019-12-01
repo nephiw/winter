@@ -20,7 +20,9 @@ import {
   HouseDetailPageComponent,
   NumberInputComponent,
   LoadingComponent,
-  VotingPageComponent
+  VotingPageComponent,
+  UploadButtonComponent,
+  ImageListComponent
 } from './admin-page';
 
 @NgModule({
@@ -46,7 +48,9 @@ import {
     PhotoEditorComponent,
     HouseDetailPageComponent,
     NumberInputComponent,
-    VotingPageComponent
+    VotingPageComponent,
+    UploadButtonComponent,
+    ImageListComponent
   ],
   providers: [
     AdminService,
