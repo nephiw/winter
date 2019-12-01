@@ -1,0 +1,20 @@
+<table class="responsive">
+  <thead>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Votes</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let house of houses$ | async" class="contact-card">
+      <td class="contact-number" data-label="Number">{{ house.number }}</td>
+      <td class="contact-name" data-label="Name">
+        <span>{{ house.firstName }} {{ house.lastName }}</span>
+      </td>
+      <td class="contact-email" data-label="Email">{{ house.emailAddress }}</td>
+      <td class="contact-address" data-label="Address">{{ house.houseAddress }}</td>
+      <td class="contact-vote" data-label="Votes">{{ house.votes }}</td>
+    </tr>
+  </tbody>
+</table>

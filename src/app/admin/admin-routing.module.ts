@@ -11,7 +11,8 @@ import {
   PasswordChangeComponent,
   ContactsComponent,
   HousePageComponent,
-  HouseDetailPageComponent
+  HouseDetailPageComponent,
+  VotingPageComponent
 } from './admin-page';
 
 const toLogin = () => redirectUnauthorizedTo(['admin', 'login']);
@@ -28,7 +29,8 @@ const routes: Routes = [
       { path: 'password', component: PasswordChangeComponent },
       { path: 'contacts', component: ContactsComponent },
       { path: 'houses', component: HousePageComponent, pathMatch: 'full' },
-      { path: 'houses/:num', component: HouseDetailPageComponent }
+      { path: 'houses/:num', component: HouseDetailPageComponent },
+      { path: 'votes', component: VotingPageComponent }
     ]
   }
 ];

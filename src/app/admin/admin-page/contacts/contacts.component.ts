@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AdminService } from '@app/admin/admin.service';
 
 @Component({
   selector: 'bc-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.less']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactsComponent {
-  public allContacts$ = this.admin.getAllContacts();
+  public allContacts$ = this.admin.getContacts();
 
   constructor(private readonly admin: AdminService) { }
 }

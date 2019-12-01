@@ -44,9 +44,9 @@ export class AdminService {
     this.byEmail = this.objectSort.bind(this, 'email');
   }
 
-  public getAllContacts(): Observable<any[]> {
-    return zip(this.entriesRef, this.contactsRef, this.votesRef).pipe(
-      map(([entries, contacts, votes]) => {
+  public getContacts(): Observable<any[]> {
+    return zip(this.entriesRef, this.contactsRef).pipe(
+      map(([entries, contacts]) => {
         const results = [];
 
         contacts.forEach((contact: Contact) => {
@@ -59,13 +59,36 @@ export class AdminService {
               {
                 contactKey: house.contactKey,
                 houseAddress: house ? house.houseAddress : '',
-                votes: votes ? this.getVoteCount(votes, house.houseAddress) : 0,
                 number: house.number,
                 createdAt: house.createdAt
               },
               contact
             )
           );
+        });
+        return results;
+      })
+    );
+  }
+
+  public getVotingResults(): Observable<any[]> {
+    return zip(this.entriesRef, this.contactsRef, this.votesRef).pipe(
+      map(([entries, contacts, votes]) => {
+        const results = [];
+
+        contacts.forEach((contact: Contact) => {
+          const house = entries.find(
+            (h: HouseEntry) => h.houseAddress === contact.houseAddress
+          ) as HouseEntry;
+
+          results.push({
+            number: house.number,
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            emailAddress: contact.emailAddress,
+            houseAddress: contact.houseAddress,
+            votes: votes ? this.getVoteCount(votes, house.houseAddress) : 0
+          });
         });
         return results;
       })
@@ -145,26 +168,4 @@ export class AdminService {
   public setNumber(key: string, num: number): void {
     this.db.doc(`/entries/${key}`).update({ number: num });
   }
-
-  // public getVotes(): Observable <any[]> {
-  //   return this.db.collection('/houseVotes').valueChanges().pipe(
-  //     map((houseVotes) => {
-  //       return houseVotes.reduce((acc, currentValue) => {
-  //         const key = (currentValue as any).address;
-  //         acc[key] = acc[key] ? 1 + acc[key] : 1;
-  //         return acc;
-  //       }, {});
-  //     }),
-  //     map((countedGroups) => {
-  //       return Object.keys(countedGroups).map((key) => ({ address: key, count: countedGroups[key] }));
-  //     }),
-  //     map((unsortedGroups) => {
-  //       return unsortedGroups.sort((a, b) => {
-  //         if (a.count < b.count) { return 1; }
-  //         if (a.count === b.count) { return 0; }
-  //         if (a.count > b.count) { return -1; }
-  //       });
-  //     })
-  //   );
-  // }
 }
