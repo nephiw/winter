@@ -1,0 +1,45 @@
+<table class="responsive">
+  <thead>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Timestamp</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let house of houses; let idx = index" class="contact-card">
+      <td class="contact-number" data-label="Number">
+        <bc-number-input
+          [(ngModel)]="house.number"
+          (numChange)="setNumber(house)"
+        ></bc-number-input>
+      </td>
+      <td class="contact-name" data-label="Name">
+        <span>{{ house.firstName }} {{ house.lastName }}</span><br />
+        <label>Has a Sign
+          <input
+            type="checkbox"
+            [(ngModel)]="house.signed"
+            (change)="changeSigned(house)"
+          />
+        </label>
+      </td>
+      <td class="contact-email" data-label="Email">
+        <span>{{ house.emailAddress }}</span><br />
+        <label>Have Emailed
+          <input
+            type="checkbox"
+            [(ngModel)]="house.emailed"
+            (change)="changeEmailed(house)"
+          />
+        </label>
+      </td>
+      <td class="contact-address" data-label="Address">
+        <a [routerLink]="['/admin', 'houses', house.number]">{{ house.houseAddress }}</a>
+      </td>
+      <td class="contact-date" data-label="Date">
+        {{ house.createdAt | date: 'yyyy-MM-dd, hh:mm a' }}
+      </td>
+    </tr>
+  </tbody>
+</table>

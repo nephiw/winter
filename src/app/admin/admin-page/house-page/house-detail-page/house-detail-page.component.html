@@ -1,0 +1,7 @@
+<ng-container *ngIf="house">
+  <h2>{{ house.houseAddress }}</h2>
+  <p>Signed up on {{ house.createdAt | date: 'yyyy-MM-dd, hh:mm a' }} and recieved the number {{ house.number }}. 
+    This house has <strong *ngIf="!house.emailed">not</strong> been emailed.
+  </p>
+  <bc-photo-editor [house]="house"></bc-photo-editor>
+</ng-container>

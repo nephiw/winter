@@ -27,6 +27,10 @@ export function documentFactory() {
   return document;
 }
 
+const dateBuilder = {
+  build: (params?: any) => (params ? new Date(params) : new Date())
+};
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -48,6 +52,7 @@ export function documentFactory() {
   providers: [
     { provide: 'Window', useFactory: windowFactory },
     { provide: 'Document', useFactory: documentFactory },
+    { provide: 'DateBuilder', useValue: dateBuilder },
     // this is required to get AOT working
     { provide: FirebaseOptionsToken, useValue: firebase.default }
   ],

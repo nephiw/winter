@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 @Injectable()
 export class DateService {
@@ -6,10 +6,10 @@ export class DateService {
   public houseCutoff: Date;
   private now: Date;
 
-  constructor() {
-    this.now = new Date();
-    this.houseCutoff = new Date('2019-12-08T23:55:00');
-    this.voteCutoff = new Date('2019-12-14T17:00:00');
+  constructor(@Inject('DateBuilder') private readonly dateBuilder: any) {
+    this.now = this.dateBuilder.build();
+    this.houseCutoff = this.dateBuilder.build('2019-12-08T23:55:00');
+    this.voteCutoff = this.dateBuilder.build('2019-12-14T17:00:00');
   }
 
   public isVotingLive(): boolean {
