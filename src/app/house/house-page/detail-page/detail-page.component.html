@@ -1,0 +1,24 @@
+<div *ngIf="house$ | async as house">
+  <h1>{{ house.number }}: {{ house.houseAddress }}</h1>
+  <div class="controls">
+    <button class="btn btn-primary" routerLink="/house/vote">Back To All Houses</button>
+    <button class="btn btn-primary" (click)="previous(house)">Previous House</button>
+    <button class="btn btn-primary" (click)="vote(house)">
+      Vote for me!
+    </button>
+    <button class="btn btn-primary" (click)="next(house)">Next House</button>
+  </div>
+  <div class="images">
+    <div *ngFor="let path of house.imagePaths" class="square">
+      <img [src]="path" alt="" (click)="grow(path)" />
+    </div>
+    <div class="not-images" *ngIf="!house.imagePaths.length">
+      No images provided.
+    </div>
+  </div>
+</div>
+
+<div class="modal" [hidden]="!fullsized" (click)="strink()">
+  <div class="cover"></div>
+  <img #fullSize />
+</div>

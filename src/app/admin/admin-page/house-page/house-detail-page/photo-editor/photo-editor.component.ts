@@ -49,7 +49,7 @@ export class PhotoEditorComponent implements OnInit {
     this.errorSize = false;
     this.loading = true;
 
-    const filePath = `${this.key}/house`;
+    const filePath = `entries/${this.key}/house`;
     const ref = this.storage.ref(filePath);
     const task = ref.put(file);
 

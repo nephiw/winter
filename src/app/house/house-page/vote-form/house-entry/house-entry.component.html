@@ -3,12 +3,8 @@
   <div class="house-address">{{ house.number }}.) {{ house.houseAddress }}</div>
   <div class="clearfix"></div>
   <div class="house-photo">
-    <ks-modal-gallery *ngIf="house"
-                      [id]="idx"
-                      [modalImages]="buildImages(house.imagePaths)"
-                      [slideConfig]="{ infinite: false, sidePreviews: { show: false } }"
-                      [buttonsConfig]="{ visible: true, strategy: 1 }"
-                      [previewConfig]="{ visible: false }">
-    </ks-modal-gallery>
+    <a class="image-link clickable" [routerLink]="['/house', house.number]">
+      <img class="square small" *ngIf="house.imagePaths.length" [src]="house.imagePaths[0]">
+    </a>
   </div>
 </div>
