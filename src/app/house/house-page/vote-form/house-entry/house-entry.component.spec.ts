@@ -1,22 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { HouseEntryComponent } from './house-entry.component';
-import { GalleryModule } from '@ks89/angular-modal-gallery';
 
 describe('HouseEntryComponent', () => {
   let component: HouseEntryComponent;
   let fixture: ComponentFixture<HouseEntryComponent>;
-  let router: jasmine.SpyObj<Router>;
 
   beforeEach(async(() => {
-    router = jasmine.createSpyObj('Router', ['navigate']);
-
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, GalleryModule.forRoot()],
-      declarations: [HouseEntryComponent],
-      providers: [{ provide: Router, useValue: router }]
+      imports: [RouterTestingModule],
+      declarations: [HouseEntryComponent]
     }).compileComponents();
   }));
 

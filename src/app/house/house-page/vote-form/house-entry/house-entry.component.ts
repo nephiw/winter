@@ -1,6 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import { Image } from '@ks89/angular-modal-gallery';
 import { SelectableEntry } from '@common/models';
 
 @Component({
@@ -13,29 +11,4 @@ export class HouseEntryComponent {
   @Input() public idx: number;
   // tslint:disable-next-line: no-output-native
   @Output() select: EventEmitter<SelectableEntry> = new EventEmitter();
-
-  constructor(private router: Router) {}
-
-  public hideMe(event): void {
-    event.target.setAttribute('hidden', 'hidden');
-  }
-
-  public buildImages(paths): any[] {
-    let imageId = 0;
-    return paths.map(path => {
-      const fullPath = `assets/images/houses/${this.house.number}`;
-      const image = `${fullPath}/${path}`;
-      const thumb = `${fullPath}/tb_${path}`;
-
-      return new Image(
-        ++imageId,
-        { img: image, description: this.house.houseAddress },
-        { img: thumb }
-      );
-    });
-  }
-
-  public navigateToHouse(house: { contactKey: string }): void {
-    this.router.navigate(['house', 'detail', house.contactKey]);
-  }
 }

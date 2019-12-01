@@ -62,7 +62,7 @@ export class VoteFormComponent implements OnInit {
     this.houseService
       .saveVote(entry)
       .pipe(take(1))
-      .subscribe(_results => {
+      .subscribe(results => {
         this.toastr.success(
           `You have successfully voted for ${entryVote.houseAddress}. ` +
             `Clicking another house will update your vote.`

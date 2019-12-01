@@ -7,9 +7,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { ToastrModule } from 'ngx-toastr';
-import { GalleryModule } from '@ks89/angular-modal-gallery';
-import 'hammerjs';
-import 'mousetrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
@@ -46,8 +43,7 @@ const dateBuilder = {
     ToastrModule.forRoot({
       positionClass: 'toast-top-full-width',
       preventDuplicates: true
-    }),
-    GalleryModule.forRoot()
+    })
   ],
   providers: [
     { provide: 'Window', useFactory: windowFactory },

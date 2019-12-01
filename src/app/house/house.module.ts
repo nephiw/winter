@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { HouseRoutingModule } from './house-routing.module';
 
 import {
@@ -20,8 +19,7 @@ import { DetailPageComponent } from './house-page/detail-page/detail-page.compon
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    HouseRoutingModule,
-    GalleryModule
+    HouseRoutingModule
   ],
   declarations: [
     HousePageComponent,
