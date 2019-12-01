@@ -4,4 +4,6 @@ export interface HouseEntry {
   createdAt: any;
   number: number;
   imagePaths: string[];
+  emailed?: boolean;
+  signed?: boolean;
 }

@@ -7,7 +7,12 @@ describe('AdminService', () => {
   let db: jasmine.SpyObj<AngularFirestore>;
 
   beforeEach(() => {
+    const collection = jasmine.createSpyObj('AngularFireCollection', [
+      'valueChanges',
+      'snapshotChanges'
+    ]);
     db = jasmine.createSpyObj('AngularFirestore', ['collection']);
+    db.collection.and.returnValue(collection);
 
     service = new AdminService(db);
   });

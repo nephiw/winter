@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { LoginComponent } from './admin-page/login/login.component';
 import { AdminService } from './admin.service';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
 import {
   ContactsComponent,
   ContactsTableComponent,
   PasswordChangeComponent,
-  AdminPageComponent
+  AdminPageComponent,
+  HouseTableComponent,
+  HousePageComponent,
+  PhotoEditorComponent,
+  HouseDetailPageComponent,
+  NumberInputComponent,
+  LoadingComponent
 } from './admin-page';
 
 @NgModule({
@@ -19,7 +27,10 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+    AngularFireAuthGuardModule
   ],
   declarations: [
     ContactsComponent,
@@ -27,12 +38,17 @@ import {
     LoginComponent,
     PasswordChangeComponent,
     AdminPageComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingComponent,
+    HouseTableComponent,
+    HousePageComponent,
+    PhotoEditorComponent,
+    HouseDetailPageComponent,
+    NumberInputComponent
   ],
   providers: [
     AdminService,
-    AuthService,
-    AuthGuard
+    AuthService
   ]
 })
 export class AdminModule { }

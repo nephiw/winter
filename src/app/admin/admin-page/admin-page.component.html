@@ -1,7 +1,10 @@
 <a routerLink="/">Home</a>
 <h1 class="cursive">User Admin</h1>
 <div class="admin-nav">
-  <a routerLink="contacts" routerLinkActive="active" class="sub-nav">All Contacts</a>
-  <a routerLink="password" routerLinkActive="active" class="sub-nav">Change Password</a>
+  <a routerLink="contacts" routerLinkActive="active" class="left-sub-nav">All Contacts</a>
+  <a routerLink="password" routerLinkActive="active" class="left-sub-nav">Change Password</a>
+  <a routerLink="houses" routerLinkActive="active" class="left-sub-nav">Houses</a>
+
+  <a class="logout clickable right-sub-nav" (click)="logout()">Logout</a>
 </div>
 <router-outlet></router-outlet>

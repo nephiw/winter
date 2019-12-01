@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@app/*": ["src/app/*"],
-      "@common/*": ["src/app/common/*"]
+      "@common/*": ["src/app/common/*"],
+      "@test/*": ["src/test/*"]
     }
   },
   "angularCompilerOptions": {
