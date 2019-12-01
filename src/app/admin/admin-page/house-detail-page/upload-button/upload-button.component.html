@@ -1,0 +1,6 @@
+<div class="file-upload" for="file" [class.error]="error">
+  <input type="file" #fileUpload style="display:none;" (change)="upload.emit($event)" accept=".png,.jpg" />
+  <button id="button" name="button" value="Upload" (click)="fileUpload.click()">
+    <ng-content></ng-content>
+  </button>
+</div>

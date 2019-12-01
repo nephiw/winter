@@ -49,7 +49,8 @@ export class PhotoEditorComponent implements OnInit {
     this.errorSize = false;
     this.loading = true;
 
-    const filePath = `entries/${this.key}/house`;
+    const timestamp = (new Date()).getTime();
+    const filePath = `entries/${this.key}/house${timestamp}`;
     const ref = this.storage.ref(filePath);
     const task = ref.put(file);
 
@@ -62,7 +63,7 @@ export class PhotoEditorComponent implements OnInit {
         finalize(() => {
           this.downloadUrl$ = ref.getDownloadURL();
           this.downloadUrl$.pipe(first()).subscribe((path: string) => {
-            const imagePaths = [ path ];
+            const imagePaths = [path, ...this.house.imagePaths];
             this.adminService.updateHouse(this.key, { imagePaths });
           });
           this.loading = false;
@@ -73,5 +74,14 @@ export class PhotoEditorComponent implements OnInit {
           this.error = true;
         }
       });
+  }
+
+  public delete(path: string) {
+    const imagePaths = this.house.imagePaths.filter(
+      imagePath => imagePath !== path
+    );
+    this.adminService.updateHouse(this.key, { imagePaths }).then(() => {
+      this.house.imagePaths = imagePaths;
+    });
   }
 }
