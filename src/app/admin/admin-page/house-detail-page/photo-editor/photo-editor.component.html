@@ -16,9 +16,7 @@
   <bc-loading [progress]="uploadPercent$"></bc-loading>
 </div>
 
-<div *ngIf="house && house.imagePaths.length > 0" class="image-container">
-  <div class="image-shell" *ngFor="let path of house.imagePaths">
-    <button class="delete-button" (click)="delete(path)">Delete</button>
-      <img class="house-image" [src]="path" />
-  </div>
-</div>
+<bc-image-list *ngIf="house && house.imagePaths.length > 0"
+               (deletePath)="delete($event)"
+               [house]="house">
+</bc-image-list>

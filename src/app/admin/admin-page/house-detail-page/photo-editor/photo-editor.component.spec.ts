@@ -7,6 +7,7 @@ import { AdminService } from '@app/admin/admin.service';
 import { PhotoEditorComponent } from './photo-editor.component';
 import { LoadingComponent } from '../loading';
 import { UploadButtonComponent } from '../upload-button/upload-button.component';
+import { ImageListComponent } from '../image-list';
 
 describe('PhotoEditorComponent', () => {
   let component: PhotoEditorComponent;
@@ -21,7 +22,11 @@ describe('PhotoEditorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         PhotoEditorComponent,
-        MockComponents(LoadingComponent, UploadButtonComponent)
+        MockComponents(
+          LoadingComponent,
+          UploadButtonComponent,
+          ImageListComponent
+        )
       ],
       providers: [
         { provide: AdminService, useValue: adminService },

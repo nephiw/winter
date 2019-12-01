@@ -15,7 +15,6 @@ const MAX_SIZE = 10 * 1024 * 1024;
 export class PhotoEditorComponent implements OnInit {
   @Input() public house: EditableHouseEntry;
   public key: string;
-  public path: string;
   public loading: boolean;
   public error: boolean;
   public errorSize: boolean;
@@ -31,7 +30,6 @@ export class PhotoEditorComponent implements OnInit {
   ngOnInit() {
     this.uploadPercent$ = of(0);
     this.key = this.house.id;
-    this.path = this.house.imagePaths[0];
     this.loading = false;
     this.error = false;
     this.errorSize = false;
