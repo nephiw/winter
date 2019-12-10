@@ -8,8 +8,8 @@ export class DateService {
 
   constructor(@Inject('DateBuilder') private readonly dateBuilder: any) {
     this.now = this.dateBuilder.build();
-    this.houseCutoff = this.dateBuilder.build('2019-12-08T23:55:00');
-    this.voteCutoff = this.dateBuilder.build('2019-12-14T17:00:00');
+    this.houseCutoff = this.dateBuilder.build('2019-12-14T23:55:00');
+    this.voteCutoff = this.dateBuilder.build('2019-12-22T17:00:00');
   }
 
   public isVotingLive(): boolean {
