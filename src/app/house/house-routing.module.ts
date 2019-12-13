@@ -8,6 +8,7 @@ import {
   HouseEndedComponent,
   DetailPageComponent
 } from './house-page';
+import { DetailPageGuard } from './guards/detail-page.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'vote' },
@@ -16,7 +17,7 @@ const routes: Routes = [
     { path: 'complete', component: HouseCompleteComponent },
     { path: 'ended', component: HouseEndedComponent },
     { path: 'vote', component: VoteFormComponent },
-    { path: ':entry', component: DetailPageComponent }
+    { path: ':entry', component: DetailPageComponent, canActivate: [DetailPageGuard] }
   ] }
 ];
 

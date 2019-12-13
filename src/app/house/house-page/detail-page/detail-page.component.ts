@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HouseService } from '@app/house/house.service';
-import { concatMap, take, map, first } from 'rxjs/operators';
+import { concatMap, take, map } from 'rxjs/operators';
 import { HouseEntry } from '@app/common/models';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,17 +12,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DetailPageComponent {
   public fullsized = false;
+  public entryNumber: number;
 
   public house$ = this.route.params.pipe(
     concatMap(({ entry }) => {
-      const houseEntry = parseInt(entry, 10);
-      return this.service.getHouseByEntry(houseEntry);
+      this.entryNumber = parseInt(entry, 10);
+      return this.service.getHouseByEntry(this.entryNumber);
     })
   );
-
-  public length$ = this.service
-    .getEntries()
-    .pipe(map(entries => entries.length));
 
   @ViewChild('fullSize', { static: true })
   public fullSize: ElementRef;
@@ -58,24 +55,11 @@ export class DetailPageComponent {
       });
   }
 
-  public previous(entry: HouseEntry): void {
-    let previous = entry.number - 1;
-    this.length$.pipe(take(1)).subscribe(length => {
-      if (previous <= 0) {
-        previous = length;
-      }
-      this.router.navigate(['house', previous]);
-    });
+  public previous(): void {
+    this.router.navigate(['house', this.entryNumber - 1]);
   }
 
-  public next(entry: HouseEntry): void {
-    let next = entry.number + 1;
-
-    this.length$.pipe(take(1)).subscribe(length => {
-      if (next > length) {
-        next = 1;
-      }
-      this.router.navigate(['house', next]);
-    });
+  public next(): void {
+    this.router.navigate(['house', this.entryNumber + 1]);
   }
 }

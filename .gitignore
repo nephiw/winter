@@ -41,6 +41,7 @@ yarn-error.log
 testem.log
 /typings
 uservars.json
+uservars-staging.json
 .firebase/*
 
 # System Files

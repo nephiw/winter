@@ -13,6 +13,7 @@ import {
 import { HouseEndedComponent } from './house-page/house-ended/house-ended.component';
 import { SharedModule } from '@app/common/shared.module';
 import { DetailPageComponent } from './house-page/detail-page/detail-page.component';
+import { DetailPageGuard } from './guards/detail-page.guard';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { DetailPageComponent } from './house-page/detail-page/detail-page.compon
     HouseEntryComponent,
     HouseEndedComponent,
     DetailPageComponent
-  ]
+  ],
+  providers: [DetailPageGuard]
 })
 export class HouseModule { }

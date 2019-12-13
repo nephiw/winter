@@ -6,23 +6,12 @@ import { Contact } from '@common/models/contact';
 import { HouseEntry } from '@common/models/house-entry';
 import { EditableHouseEntry } from '@app/common/models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AdminService {
-  private contactsRef: Observable<any> = this.db
-    .collection('/contacts')
-    .valueChanges();
-  private entriesRef: Observable<any> = this.db
-    .collection('/entries')
-    .valueChanges();
-  private votesRef: Observable<any> = this.db
-    .collection('/votes')
-    .valueChanges();
-
-  private entriesSnapshots: Observable<any> = this.db
-    .collection('/entries')
-    .snapshotChanges();
+  private contactsRef: Observable<any>;
+  private entriesRef: Observable<any>;
+  private votesRef: Observable<any>;
+  private entriesSnapshots: Observable<any>;
 
   private byCount: (a: any, b: any) => number;
   private byTimestamp: (a: any, b: any) => number;
@@ -42,6 +31,12 @@ export class AdminService {
     this.byCount = this.objectSort.bind(this, 'count');
     this.byTimestamp = this.objectSort.bind(this, 'createdAt');
     this.byEmail = this.objectSort.bind(this, 'email');
+
+    this.contactsRef = this.db.collection('/contacts').valueChanges();
+    this.entriesRef = this.db.collection('/entries').valueChanges();
+    this.votesRef = this.db.collection('/votes').valueChanges();
+
+    this.entriesSnapshots = this.db.collection('/entries').snapshotChanges();
   }
 
   public getContacts(): Observable<any[]> {
