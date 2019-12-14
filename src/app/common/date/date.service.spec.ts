@@ -31,21 +31,21 @@ describe('DateService', () => {
 
   describe('isVotingLive', () => {
     it('returns true if between house cutoff and voting cutoff', () => {
-      service.houseCutoff = lastWeek;
+      service.voteStart = lastWeek;
       service.voteCutoff = tomorrow;
 
       expect(service.isVotingLive()).toBe(true);
     });
 
     it('returns false if after vote cutoff', () => {
-      service.houseCutoff = lastWeek;
+      service.voteStart = lastWeek;
       service.voteCutoff = yesterday;
 
       expect(service.isVotingLive()).toBe(false);
     });
 
     it('returns false if before house cutoff', () => {
-      service.houseCutoff = tomorrow;
+      service.voteStart = tomorrow;
       service.voteCutoff = nextWeek;
 
       expect(service.isVotingLive()).toBe(false);
