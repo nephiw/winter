@@ -1,17 +1,35 @@
-<h1 class="stylized">House Decoration Contest</h1>
-<p>
-  Help us figure out which decorated houses are the best. Below you will find several addresses and 
-  their registration number. These houses will have signs with this number on it. Vote for the house
-  decorations you like the most by clicking the button that says "Vote for Me!". You can only vote once,
-  clicking a new house will change your vote, but do share with your neighbors!
-</p><p>
-  If there are photos of the house, the first one will show below, clicking it will open a closer look. 
-  Have fun checking out all of the participants this year.
-</p>
+<div class="container">
+  <h1 class="stylized">House Decoration Contest</h1>
+  <div class="wester_logo">
+    <img src="/assets/images/wester_logo.jpg" />
+  </div>
+  <div class="intro-text">
+    <h3 class="sponsor">
+      Sponsored by the
+      <a href="https://www.westerhometeam.com/" target="wester"
+        >Wester Home Team</a
+      >
+    </h3>
+    <p>
+      Welcome to the Belle Creek House Decorating voting page. Voting is
+      designed to be for people who live in and around the Belle Creek
+      Community. Vote for a house by clicking the button that says, "Vote for
+      Me!". You can only vote once, clicking on a new house will change your
+      vote. Drive around the community and see the lights in person or click on
+      the picture and you will see all their decorations.
+    </p>
+    <p>
+      Happy voting... and thank you for participating in the fun!
+    </p>
+  </div>
+</div>
+<div class="clearfix"></div>
 <div class="entries">
-  <bc-house-entry *ngFor="let entry of entries; let idx = index"
-                  [idx]="idx"
-                  [house]="entry"
-                  (select)="voteForEntry($event)">
+  <bc-house-entry
+    *ngFor="let entry of entries; let idx = index"
+    [idx]="idx"
+    [house]="entry"
+    (select)="voteForEntry($event)"
+  >
   </bc-house-entry>
 </div>

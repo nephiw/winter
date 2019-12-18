@@ -6,10 +6,34 @@
     width: calc(50% - 20px);
     margin: 10px;
   }
+}
 
-  @media screen and (max-width: 768px) {
-    bc-house-entry {
-      width: calc(100% - 20px);
+@media screen and (max-width: 768px) {
+  .entries bc-house-entry {
+    width: calc(100% - 20px);
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.wester_logo {
+  float: right;
+
+  img {
+    max-width: 100%;
+    width: 260px;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .wester_logo {
+    float: none;
+    img {
+      margin: 0 auto;
     }
   }
 }
