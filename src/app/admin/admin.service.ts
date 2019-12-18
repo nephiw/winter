@@ -13,7 +13,7 @@ export class AdminService {
   private votesRef: Observable<any>;
   private entriesSnapshots: Observable<any>;
 
-  private byCount: (a: any, b: any) => number;
+  private byVotes: (a: any, b: any) => number;
   private byTimestamp: (a: any, b: any) => number;
   private byEmail: (a: any, b: any) => number;
 
@@ -28,7 +28,7 @@ export class AdminService {
   }
 
   constructor(private readonly db: AngularFirestore) {
-    this.byCount = this.objectSort.bind(this, 'count');
+    this.byVotes = this.objectSort.bind(this, 'votes');
     this.byTimestamp = this.objectSort.bind(this, 'createdAt');
     this.byEmail = this.objectSort.bind(this, 'email');
 
@@ -85,6 +85,8 @@ export class AdminService {
             votes: votes ? this.getVoteCount(votes, house.houseAddress) : 0
           });
         });
+        results.sort(this.byVotes);
+        results.reverse();
         return results;
       })
     );
