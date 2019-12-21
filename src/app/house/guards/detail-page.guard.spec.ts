@@ -11,7 +11,12 @@ describe('DetailGuardGuard', () => {
   let route: jasmine.SpyObj<any>;
 
   beforeEach(() => {
-    getEntriesSubject = new BehaviorSubject([{}, {}, {}, {}]);
+    getEntriesSubject = new BehaviorSubject([
+      { number: 1 },
+      { number: 2 },
+      { number: 3 },
+      { number: 4 }
+    ]);
     houseService = jasmine.createSpyObj('HouseService', ['getEntries']);
     houseService.getEntries.and.returnValue(getEntriesSubject.asObservable());
 
@@ -20,8 +25,10 @@ describe('DetailGuardGuard', () => {
     guard = new DetailPageGuard(houseService, route);
   });
 
-  it('returns true if the number is between the length and 0', fakeAsync(() => {
-    const next = { paramMap: { get: () => 2 } } as any as ActivatedRouteSnapshot;
+  it('returns true if the number is between the max and 0', fakeAsync(() => {
+    const next = ({
+      paramMap: { get: () => 2 }
+    } as any) as ActivatedRouteSnapshot;
     const activateSpy = jasmine.createSpy('activate');
     guard.canActivate(next).subscribe(activateSpy);
     flushMicrotasks();
@@ -29,8 +36,10 @@ describe('DetailGuardGuard', () => {
     expect(activateSpy).toHaveBeenCalledWith(true);
   }));
 
-  it('returns a url tree with 0 if longer than length', fakeAsync(() => {
-    const next = { paramMap: { get: () => 6 } } as any as ActivatedRouteSnapshot;
+  it('returns a url tree with 1 if longer than max', fakeAsync(() => {
+    const next = ({
+      paramMap: { get: () => 6 }
+    } as any) as ActivatedRouteSnapshot;
     const activateSpy = jasmine.createSpy('activate');
     guard.canActivate(next).subscribe(activateSpy);
     flushMicrotasks();
@@ -38,12 +47,14 @@ describe('DetailGuardGuard', () => {
     expect(activateSpy).toHaveBeenCalledWith('house/1');
   }));
 
-  it('returns a url tree with length - 1 if less than 0', fakeAsync(() => {
-    const next = { paramMap: { get: () => -1 } } as any as ActivatedRouteSnapshot;
+  it('returns a url tree with max if less than 0', fakeAsync(() => {
+    const next = ({
+      paramMap: { get: () => -1 }
+    } as any) as ActivatedRouteSnapshot;
     const activateSpy = jasmine.createSpy('activate');
     guard.canActivate(next).subscribe(activateSpy);
     flushMicrotasks();
 
-    expect(activateSpy).toHaveBeenCalledWith('house/3');
+    expect(activateSpy).toHaveBeenCalledWith('house/4');
   }));
 });

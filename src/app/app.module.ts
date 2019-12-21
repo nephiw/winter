@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
 import { SharedModule } from './common/shared.module';
-const { firebase } = environment;
+const firebase = environment.firebase;
 
 export function windowFactory() {
   return window;
@@ -50,7 +50,7 @@ const dateBuilder = {
     { provide: 'Document', useFactory: documentFactory },
     { provide: 'DateBuilder', useValue: dateBuilder },
     // this is required to get AOT working
-    { provide: FirebaseOptionsToken, useValue: firebase.default }
+    { provide: FirebaseOptionsToken, useValue: firebase }
   ],
   bootstrap: [AppComponent]
 })

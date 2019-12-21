@@ -5,7 +5,7 @@
 import * as uservars from '../../uservars.json';
 export const environment = {
   production: false,
-  firebase: uservars
+  firebase: uservars.default
 };
 
 /*
